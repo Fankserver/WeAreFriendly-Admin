@@ -1,0 +1,8 @@
+AuthUserFile /var/www/waf/.htpasswd
+AuthGroupFile /dev/null
+AuthName "[=WAF=] Admin 2.0"
+AuthType Basic
+
+<limit GET POST>
+require valid-user
+</limit>
