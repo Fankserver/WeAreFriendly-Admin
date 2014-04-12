@@ -53,7 +53,7 @@ foreach ($array as $val) {
 		$civ_dive = 0;
 }
 //	Öl
-$needle = "Öl";
+$needle = "Oel";
 foreach ($array as $val) {
 	if ($val === $needle){
 		$civ_oil = 1;

@@ -109,8 +109,8 @@ if(isset ($_POST["pl_update"]) AND $_POST["pl_update"] == 1){
 		echo "Connection Failed: " . mysqli_connect_errno();
 		exit();
 	}
-	if($stmt = $db->prepare("INSERT INTO mod_replace (id, admin, playerid, timestamp, money, lizenzen, coplevel, donatorstatus) VALUES (?, ?, ?, ?, ?, ?, ?, ?)")){
-		$stmt->bind_param("ississss", $empty, $admin, $playerid, $timestamp, $cashflow, $lizenzen_text, $coplevel_text, $donator_text);
+	if($stmt = $db->prepare("INSERT INTO mod_replace (id, admin, playerid, timestamp, money, lizenzen, coplevel) VALUES (?, ?, ?, ?, ?, ?, ?)")){
+		$stmt->bind_param("ississss", $empty, $admin, $playerid, $timestamp, $cashflow, $lizenzen_text, $coplevel_text);
 		$stmt->execute();
 		if ($stmt->errno) {
 			echo "FAILURE!!! " . $stmt->error;
@@ -424,7 +424,7 @@ if(isset ($_POST["kontakt_eintragen"]) && $_POST["kontakt_eintragen"] == 1){
 									
 									<!--Auswahlbereich für die Verarbeitungslizenzen-->
 									<optgroup label="Verarbeitungs-Lizenzen">
-										<option name="li_oil"     	<?php if($civli[0][6]  == 1){print "selected";}?>>Öl</option>
+										<option name="li_oil"     	<?php if($civli[0][6]  == 1){print "selected";}?>>Oel</option>
 										<option name="li_gun"     	<?php if($civli[0][9]  == 1){print "selected";}?>>Waffenlizenz</option>
 										<option name="li_diamond" 	<?php if($civli[0][12] == 1){print "selected";}?>>Diamant</option>
 										<option name="li_copper"  	<?php if($civli[0][13] == 1){print "selected";}?>>Kupfer</option>
