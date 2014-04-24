@@ -167,7 +167,6 @@ if(isset ($_POST["kontakt_eintragen"]) && $_POST["kontakt_eintragen"] == 1){
 										<th><strong>Zustand:</strong></th>
 										<th><strong>Ort:</strong></th>
 										<th><strong>Farbe:</strong></th>
-										<th><strong>Nummernschild:</strong></th>
 										<th><strong>Inventar</strong></th>
 									</tr>
 									<?php
@@ -215,7 +214,6 @@ if(isset ($_POST["kontakt_eintragen"]) && $_POST["kontakt_eintragen"] == 1){
 												<td><? if($vehicles->alive==1){ print "Intakt"; } else{ print "Zerst&ouml;rt"; } ?></td>
 												<td><? if($vehicles->active==1){ print "Unterwegs"; } else{ print "Garage"; } ?></td>
 												<td><? print $vehicles->color; ?></td>
-												<td><? print $vehicles->plate; ?></td>
 												<td><? print $vehicles->inventory; ?> </td>
 												<td><button type="submit" class="btn btn-success">Fahrzeug ersetzen</button></td>
 											</tr>
