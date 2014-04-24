@@ -120,7 +120,7 @@ if(isset ($_POST["pl_update"]) AND $_POST["pl_update"] == 1){
 		echo "Connection Failed: " . mysqli_connect_errno();
 		exit();
 	}
-	if($stmt = $db->prepare("INSERT INTO mod_replace (id, admin, playerid, timestamp, money, lizenzen, coplevel, donatorstatus) VALUES (?, ?, ?, ?, ?, ?, ?, ?)")){
+	if($stmt = $db->prepare("INSERT INTO mod_replace (id, admin, playerid, timestamp, money, lizenzen, coplevel, donatorlvl) VALUES (?, ?, ?, ?, ?, ?, ?, ?)")){
 		$stmt->bind_param("ississss", $empty, $admin, $playerid, $timestamp, $cashflow, $lizenzen_text, $coplevel_text, $donator_text);
 		$stmt->execute();
 		if ($stmt->errno) {
