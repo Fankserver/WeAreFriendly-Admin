@@ -73,9 +73,20 @@ if(isset ($_POST["pl_update"]) AND $_POST["pl_update"] == 1){
 	$cashflow = 0;
 	$cashflow_hand = 0;
 	$cashflow_bank = 0;
-	if($cash != $_POST["money_hand_old"]){$cashflow_hand = $cash - $_POST["money_hand_old"];}
-	if($bankacc != $_POST["money_bank_old"]){$cashflow_bank = $bankacc - $_POST["money_bank_old"];}
+	if($cash != $_POST["money_hand_old"]){
+		if($cash > $_POST["money_hand_old"]){ $cashflow_hand = $cash - $_POST["money_hand_old"]; }
+		elseif($cash < $_POST["money_hand_old"]){ $cashflow_hand = $_POST["money_hand_old"] - $cash; }
+	}
+	if($bankacc != $_POST["money_bank_old"]){
+		if($bankacc > $_POST["money_bank_old"]){ $cashflow_bank = $bankacc - $_POST["money_bank_old"]; }
+		elseif($bankacc < $_POST["money_bank_old"]){ $cashflow_bank = $_POST["money_bank_old"] - $bankacc; }
+	}
 	$cashflow = $cashflow_hand + $cashflow_bank;
+	
+	//	if($cash != $_POST["money_hand_old"]){$cashflow_hand = $cash - $_POST["money_hand_old"];}
+	//	if($bankacc != $_POST["money_bank_old"]){$cashflow_bank = $bankacc - $_POST["money_bank_old"];}
+	//	$cashflow = $cashflow_hand + $cashflow_bank;
+	
 	
 	//	Logging - Lizenzen
 	$lizenzen_text = "";
@@ -109,8 +120,8 @@ if(isset ($_POST["pl_update"]) AND $_POST["pl_update"] == 1){
 		echo "Connection Failed: " . mysqli_connect_errno();
 		exit();
 	}
-	if($stmt = $db->prepare("INSERT INTO mod_replace (id, admin, playerid, timestamp, money, lizenzen, coplevel) VALUES (?, ?, ?, ?, ?, ?, ?)")){
-		$stmt->bind_param("ississss", $empty, $admin, $playerid, $timestamp, $cashflow, $lizenzen_text, $coplevel_text);
+	if($stmt = $db->prepare("INSERT INTO mod_replace (id, admin, playerid, timestamp, money, lizenzen, coplevel, donatorstatus) VALUES (?, ?, ?, ?, ?, ?, ?, ?)")){
+		$stmt->bind_param("ississss", $empty, $admin, $playerid, $timestamp, $cashflow, $lizenzen_text, $coplevel_text, $donator_text);
 		$stmt->execute();
 		if ($stmt->errno) {
 			echo "FAILURE!!! " . $stmt->error;
@@ -150,13 +161,13 @@ if(isset ($_POST["kontakt_eintragen"]) && $_POST["kontakt_eintragen"] == 1){
 		print $db->error;
 	$db->close();
 }
-//
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
 	<head>
 		<meta charset="utf-8">
+		<meta http-equiv="content-type" content="text/html; charset=utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<meta name="description" content="">
@@ -406,8 +417,14 @@ if(isset ($_POST["kontakt_eintragen"]) && $_POST["kontakt_eintragen"] == 1){
 							<input name="arrested_old"		type="hidden"		value="<?print $player->arrested;?>">
 							<input name="blacklisted_old"	type="hidden"		value="<?print $player->blacklist;?>">
 							<input name="money_bank_old"	type="hidden"		value="<?print $player->bankacc;?>">
-							<input name="monbey_hand_old"	type="hidden"		value="<?print $player->cash;?>">
+							<input name="money_hand_old"	type="hidden"		value="<?print $player->cash;?>">
 							
+							<?php if($admin->copstatus == 0){ ?>
+								<input name="coplevel"		type="hidden"		value="<?print $player->coplevel;?>">
+							<?php } ?>
+							<?php if($admin->donatorstatus == 0){ ?>
+								<input name="donatorlvl"		type="hidden"		value="<?print $player->donatorlvl;?>">
+							<?php } ?>
 							
 							<div class="form-group">
 								<p><strong>Lizenzen:</strong></p>
