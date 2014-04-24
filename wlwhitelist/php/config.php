@@ -1,9 +1,9 @@
 <?php
 //	Datenbankkonfiguration und einlesen der Datenbankklasse
 $mysqlhost="localhost";
-$mysqluser="waf";
+$mysqluser="wafwl";
 $mysqlpass="2sCvWamLnEfxZfX8";
-$mysqldb="arma3life";
+$mysqldb="arma3lifewhitelist";
 
 $sql=mysql_connect($mysqlhost,$mysqluser,$mysqlpass);
 $db=$mysqldb;
