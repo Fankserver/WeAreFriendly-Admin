@@ -23,5 +23,5 @@ $admins = mysql_fetch_object($altislife->daten);
 
 //	Konfiguration globaler Strings (Titel, Copyright etc.)
 $title = "[=WAF=] Admin 2.0";
-$copy  = "(c) ".date("Y")." - powered by Eisbaer & nano ..::.. Version 1.1.1";
+$copy  = "(c) ".date("Y")." - powered by Eisbaer & nano ..::.. Version 1.1.2";
 ?>
