@@ -136,7 +136,7 @@ include("./php/functions.php");
 												$carname = $altislife->lesen("vehicles", "id='".$carreplace->vehicle."'", "", "", "J");
 												$carname = mysql_fetch_object($carname);
 												?>
-												<td><? print $carname->vehicle; ?></td>
+												<td><? print $carname->classname; ?></td>
 											</tr>
 										</form>
 									<?php }	?>
