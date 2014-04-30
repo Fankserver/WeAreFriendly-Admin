@@ -369,10 +369,10 @@ if(isset ($_POST["kontakt_eintragen"]) && $_POST["kontakt_eintragen"] == 1){
 										<td>
 											<ul>
 												<?php if($player->reblevel>0){ ?>
-													<li><strong>Level <?php print $player->coplevel;?></strong></li>
+													<li><strong>Level <?php print $player->reblevel;?></strong></li>
 												<?php }
 												elseif($player->reblevel==0){ ?>
-													<li>Level <?php print $player->coplevel;?></li>
+													<li>Level <?php print $player->reblevel;?></li>
 												<?php } ?>
 											</ul>
 										</td>
