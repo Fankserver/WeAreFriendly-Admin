@@ -113,7 +113,12 @@ if(isset ($_POST["pl_update"]) AND $_POST["pl_update"] == 1){
 	//	Logging Spezial
 	$coplevel_text = "";
 	$donator_text = ""; 	
-	if($coplevel != $_POST["coplevel_old"]){$coplevel_text = "Coplevel von ".$_POST["coplevel_old"]." auf ".$coplevel." geaendert";}
+	if($coplevel != $_POST["coplevel_old"]){
+		$coplevel_text = "Coplevel von ".$_POST["coplevel_old"]." auf ".$coplevel." geaendert";
+	}
+	else{
+		$coplevel_text = "Coplevel nicht geaendert!";
+	}
 	if($donatorlvl != $_POST["donlvl_old"]){$donator_text = "Donatorlevel von ".$_POST["donlvl_old"]." auf ".$donatorlvl." geaendert";}
 	
 	// FUNKTIONSFÄHIGES STATEMENT! :-)
@@ -517,7 +522,7 @@ if(isset ($_POST["kontakt_eintragen"]) && $_POST["kontakt_eintragen"] == 1){
 								</div>
 								<?php
 							}
-							if($admin->rebstatus == 1){
+							if($admin->rebellenstatus == 1){
 								?>
 								<div class="form-group">
 									<p><strong>Rebellenlevel:</strong></p>

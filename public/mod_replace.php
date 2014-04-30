@@ -3,7 +3,7 @@
 //	(c) 2014 by Eisbaer | Flo
 
 $tabelle1 = "mod_replace";
-$tabelle2 = "vehicle_replace";
+$tabelle2 = "vehicle_repalce";
 $mod	  = $_GET["mods"];
 $timestamp= time();
 $empty 	  = "";
