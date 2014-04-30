@@ -97,8 +97,6 @@ include("./php/functions.php");
 									for($v=0; $v<mysql_num_rows($replace); $v++){
 											$modreplace=mysql_fetch_object($replace);
 										?>
-										<form  id="formVehicles" name="formVehicles" method="post" action="">
-											<input type="hidden" name="id" 	id="id" 	value="<? print $modreplace->id; ?>">
 											<tr class="success">
 												<td><? print $modreplace->admin; ?></td>
 												<td><? print $modreplace->playerid; ?></td>
@@ -107,7 +105,6 @@ include("./php/functions.php");
 												<td><? print $modreplace->lizenzen; ?></td>
 												<td><? print $modreplace->coplevel; ?> </td>
 											</tr>
-										</form>
 									<?php }	?>
 								</tbody>
 							</table>
@@ -126,15 +123,16 @@ include("./php/functions.php");
 									for($v=0; $v<mysql_num_rows($replace); $v++){
 											$carreplace=mysql_fetch_object($replace);
 										?>
-										<form  id="formVehicles" name="formVehicles" method="post" action="">
-											<input type="hidden" name="id" 	id="id" 	value="<? print $carreplace->id; ?>">
 											<tr class="success">
 												<td><? print $carreplace->admin; ?></td>
 												<td><? print $carreplace->playerid; ?></td>
 												<td><? print date('l, d F Y G:i:s', ($carreplace->timestamp)); ?></td>
-												<td><? print $carreplace->vehicle; ?></td>
+												<?php
+												$carname = $altislife->lesen("vehicles", "id='".$carreplace->vehicle"'", "", "", "J");
+												$carname = mysql_fetch_object($carname);
+												?>
+												<td><? print $carname->vehicle; ?></td>
 											</tr>
-										</form>
 									<?php }	?>
 								</tbody>
 							</table>

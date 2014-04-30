@@ -41,6 +41,7 @@ if(isset ($_POST["ersatz"]) AND $_POST["ersatz"] == 1){
 	//	Logging!
 	$playerid = $_GET["playerid"];
 	$vehicle  = $_POST["classn"];
+	$carid = $_POST["carid"];
 	$timestamp= time();
 	$empty = "";
 	$admin = $_SERVER["PHP_AUTH_USER"];
@@ -52,7 +53,7 @@ if(isset ($_POST["ersatz"]) AND $_POST["ersatz"] == 1){
 		exit();
 	}
 	if($stmt = $db->prepare("INSERT INTO vehicle_repalce (id, playerid, vehicle, admin, timestamp) VALUES (?, ?, ?, ?, ?)")){
-		$stmt->bind_param("isssi", $empty, $playerid, $vehicle, $admin, $timestamp);
+		$stmt->bind_param("isssi", $empty, $playerid, $carid, $admin, $timestamp);
 		$stmt->execute();
 		if ($stmt->errno) {
 			echo "FAILURE!!! " . $stmt->error;

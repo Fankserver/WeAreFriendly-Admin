@@ -113,10 +113,10 @@ for($i=0; $i<count($suche); $i++) {
 									$moderatoren = mysql_fetch_object($altislife->daten);
 									?>
 									<option name="mods<?print $m;?>"><?print utf8_decode($moderatoren->admin); ?></option>
-									</select>
 									<?php
 								}
 								?>
+								</select>
 							</div>
 						</div>
 						<button type="submit" class="btn btn-default">Abfrage starten</button>
