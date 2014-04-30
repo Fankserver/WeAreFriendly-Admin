@@ -145,6 +145,9 @@ if(isset ($_POST["kontakt_eintragen"]) && $_POST["kontakt_eintragen"] == 1){
 						<?php if ($admin->donatorstatus == 1){ ?>
 						<li><a href="donatoren.php">Donator</a></li>
 						<?php } ?>
+						<?php if ($admin->modleitung == 1){ ?>
+						<li><a href="mod_replaces.php">Replaces</a></li>
+						<?php } ?>
 					</ul>
 				</div>
 				<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">

@@ -29,6 +29,8 @@ if(isset ($_POST["pl_update"]) AND $_POST["pl_update"] == 1){
 	$cash = $_POST["money_hand"];
 	$bankacc = $_POST["money_bank"];
 	$coplevel = $_POST["coplevel"];	
+	$reblevel = $_POST["reblevel"];
+	$adaclevel = $_POST["adaclevel"];
 	$donatorlvl = $_POST["donatorlvl"];
 	$cop_gear = $_POST["cop_gear"];
 	$civ_gear = $_POST["civ_gear"];
@@ -51,8 +53,8 @@ if(isset ($_POST["pl_update"]) AND $_POST["pl_update"] == 1){
 	
 	//	FUNKTIONSFÄHIGES STATEMENT!
 	$db = new mysqli($mysqlhost, $mysqluser, $mysqlpass, $mysqldb);
-	if($stmt = $db->prepare("UPDATE players SET cash=?, bankacc=?, coplevel=?, cop_licenses=?, civ_licenses=?, arrested=?, donatorlvl=?, blacklist=? WHERE playerid = ?")){
-		$stmt->bind_param("iisssssss", $cash, $bankacc, $coplevel, $coplic2, $civlic2, $arrested, $donatorlvl, $blacklist, $playerid1);
+	if($stmt = $db->prepare("UPDATE players SET cash=?, bankacc=?, coplevel=?, cop_licenses=?, civ_licenses=?, arrested=?, donatorlvl=?, blacklist=?, reblevel=?, $adaclevel=? WHERE playerid = ?")){
+		$stmt->bind_param("iisssssssss", $cash, $bankacc, $coplevel, $coplic2, $civlic2, $arrested, $donatorlvl, $blacklist, $reblevel, $adaclevel, $playerid1);
 		$stmt->execute();
 		if ($stmt->errno) {
 			echo "FAILURE!!! " . $stmt->error;
@@ -164,7 +166,7 @@ if(isset ($_POST["kontakt_eintragen"]) && $_POST["kontakt_eintragen"] == 1){
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 	<head>
 		<meta charset="utf-8">
 		<meta http-equiv="content-type" content="text/html; charset=utf-8">
@@ -214,6 +216,9 @@ if(isset ($_POST["kontakt_eintragen"]) && $_POST["kontakt_eintragen"] == 1){
 						<?php if ($admin->donatorstatus == 1){ ?>
 						<li><a href="donatoren.php">Donator</a></li>
 						<?php } ?>
+						<?php if ($admin->modleitung == 1){ ?>
+						<li><a href="mod_replaces.php">Replaces</a></li>
+						<?php } ?>
 					</ul>
 				</div>
 				<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
@@ -223,7 +228,7 @@ if(isset ($_POST["kontakt_eintragen"]) && $_POST["kontakt_eintragen"] == 1){
 					$player = mysql_fetch_object($altislife->daten);
 					?>
 					
-					<h1 class="page-header"><?print utf8_decode($player->name);?> - <a href="banrequest.php?playerid=<?php print $player->playerid;?>"><button type="submit" class="btn">Ban Anfragen</button></a></h1>
+					<h1 class="page-header"><?print utf8_decode($player->name);?><!-- - <a href="banrequest.php?playerid=<?php print $player->playerid;?>"><button type="submit" class="btn">Ban Anfragen</button></a></h1>-->
 					<div class="col-md-6">
 						<div class="table-responsive">
 							<p>Allgemeine Informationen</p>
@@ -332,19 +337,13 @@ if(isset ($_POST["kontakt_eintragen"]) && $_POST["kontakt_eintragen"] == 1){
 										<td><strong>Polizei:</strong></td>
 										<td>
 											<ul>
-												<?php
-												if($admin->copstatus == 1){ ?>
-													<?php if($player->coplevel>0){ ?>
-														<li><strong>Level <?php print $player->coplevel;?></strong></li>
-													<?php }
-													elseif($player->coplevel==0){ ?>
-														<li>Level <?php print $player->coplevel;?></li>
-													<?php 
-													}
-												}
-												?>
-												
-												<?php if($player->blacklist==1){ ?>
+												<?php if($player->coplevel>0){ ?>
+													<li><strong>Level <?php print $player->coplevel;?></strong></li>
+												<?php } 
+												elseif($player->coplevel==0){ ?>
+													<li>Level <?php print $player->coplevel;?></li>
+												<?php }
+												if($player->blacklist==1){ ?>
 													<li><strong class="text-danger">Auf der Blacklist</strong></li>
 												<?php }
 												else{ ?>
@@ -357,6 +356,19 @@ if(isset ($_POST["kontakt_eintragen"]) && $_POST["kontakt_eintragen"] == 1){
 													<li>Nicht im Gef&auml;ngnis</li>
 												<?php }
 												?>
+											</ul>
+										</td>
+									</tr>
+									<tr>
+										<td><strong>Rebellen:</strong></td>
+										<td>
+											<ul>
+												<?php if($player->reblevel>0){ ?>
+													<li><strong>Level <?php print $player->coplevel;?></strong></li>
+												<?php }
+												elseif($player->reblevel==0){ ?>
+													<li>Level <?php print $player->coplevel;?></li>
+												<?php } ?>
 											</ul>
 										</td>
 									</tr>
@@ -418,12 +430,17 @@ if(isset ($_POST["kontakt_eintragen"]) && $_POST["kontakt_eintragen"] == 1){
 							<input name="blacklisted_old"	type="hidden"		value="<?print $player->blacklist;?>">
 							<input name="money_bank_old"	type="hidden"		value="<?print $player->bankacc;?>">
 							<input name="money_hand_old"	type="hidden"		value="<?print $player->cash;?>">
+							<input name="adaclevel_old"		type="hidden"		value="<?print $player->adaclevel;?>">
+							<input name="reblevel_old"		type="hidden"		value="<?print $player->reblevel;?>">
 							
 							<?php if($admin->copstatus == 0){ ?>
 								<input name="coplevel"		type="hidden"		value="<?print $player->coplevel;?>">
 							<?php } ?>
 							<?php if($admin->donatorstatus == 0){ ?>
 								<input name="donatorlvl"		type="hidden"		value="<?print $player->donatorlvl;?>">
+							<?php } ?>							
+							<?php if($admin->rebstatus == 0){ ?>
+								<input name="reblevel"		type="hidden"		value="<?print $player->reblevel;?>">
 							<?php } ?>
 							
 							<div class="form-group">
@@ -473,6 +490,13 @@ if(isset ($_POST["kontakt_eintragen"]) && $_POST["kontakt_eintragen"] == 1){
 									</optgroup>
 								</select>
 							</div>
+							<div class="form-group">
+								<p><strong>ADAC Level:</strong></p>
+								<select class="selectpicker" name="adaclevel">
+									<option name="adaclevel0"  	<?php if($player->adaclevel == 0){print "selected";}?>>0</option>
+									<option name="adaclevel1"  	<?php if($player->adaclevel == 1){print "selected";}?>>1</option>
+								</select>
+							</div>
 							<?php
 							if($admin->copstatus == 1){
 								?>
@@ -489,6 +513,19 @@ if(isset ($_POST["kontakt_eintragen"]) && $_POST["kontakt_eintragen"] == 1){
 									<option name="coplevel7"  	<?php if($player->coplevel == 7){print "selected";}?>>7</option>
 									<option name="coplevel8"  	<?php if($player->coplevel == 8){print "selected";}?>>8</option>
 									<option name="coplevel9"  	<?php if($player->coplevel == 9){print "selected";}?>>9</option>
+									</select>
+								</div>
+								<?php
+							}
+							if($admin->rebstatus == 1){
+								?>
+								<div class="form-group">
+									<p><strong>Rebellenlevel:</strong></p>
+									<select class="selectpicker" name="reblevel">
+										<option name="reblevel0"  	<?php if($player->reblevel == 0){print "selected";}?>>0</option>
+										<option name="reblevel1"  	<?php if($player->reblevel == 1){print "selected";}?>>1</option>
+										<option name="reblevel2"  	<?php if($player->reblevel == 2){print "selected";}?>>2</option>
+										<option name="reblevel3"  	<?php if($player->reblevel == 3){print "selected";}?>>3</option>
 									</select>
 								</div>
 								<?php

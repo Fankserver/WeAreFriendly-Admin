@@ -33,39 +33,42 @@ include("./php/config.php");
 
 	<body>
 
-		<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-			<div class="container-fluid">
-				<div class="navbar-header">
-					<a class="navbar-brand" href="index.php"><?print $title;?></a>
-						<ul class="nav navbar-nav navbar-right">
-						<li class="dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown"> AltisLife Public Server <b class="caret"></b></a>
-							<ul class="dropdown-menu">
-								<li><a href="">AltisLife Public Server</a></li>
-								<?php if($admin->whitelist == 1){ ?>
-									<li><a href="../wlwhitelist">AltisLife Whitelist Server</a></li>
-								<?php } ?>
-							</ul>
-						</li>
-					</ul>
-				</div>
+	<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="index.php"><?print $title;?></a>
+				<ul class="nav navbar-nav navbar-right">
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown"> AltisLife Public Server <b class="caret"></b></a>
+						<ul class="dropdown-menu">
+							<li><a href="">AltisLife Public Server</a></li>
+							<?php if($admin->whitelist == 1){ ?>
+								<li><a href="../wlwhitelist">AltisLife Whitelist Server</a></li>
+							<?php } ?>
+						</ul>
+					</li>
+				</ul>
 			</div>
 		</div>
+	</div>
 
-		<div class="container-fluid">
-			<div class="row">
-				<div class="col-sm-3 col-md-2 sidebar">
-					<p>Angemeldet als:<br><em><? print $_SERVER["PHP_AUTH_USER"]; ?></em></p>
-					<br>
-					<ul class="nav nav-sidebar">
-						<li class="active"><a href="index.php">Hauptmen&uuml;</a></li>
-						<li><a href="players.php">Spieler</a></li>
-						<li><a href="vehicles.php">Fahrzeuge</a></li>
-						<?php if ($admin->donatorstatus == 1){ ?>
-						<li><a href="donatoren.php">Donator</a></li>
-						<?php } ?>
-					</ul>
-				</div>
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-sm-3 col-md-2 sidebar">
+				<p>Angemeldet als:<br><em><? print $_SERVER["PHP_AUTH_USER"]; ?></em></p>
+				<br>
+				<ul class="nav nav-sidebar">
+					<li class="active"><a href="index.php">Hauptmen&uuml;</a></li>
+					<li><a href="players.php">Spieler</a></li>
+					<li><a href="vehicles.php">Fahrzeuge</a></li>
+					<?php if ($admin->donatorstatus == 1){ ?>
+					<li><a href="donatoren.php">Donator</a></li>
+					<?php } ?>
+					<?php if ($admin->modleitung == 1){ ?>
+					<li><a href="mod_replaces.php">Replaces</a></li>
+					<?php } ?>
+				</ul>
+			</div>
 			<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 				<h2 class="page-header">Aktuelle Infos</h2>
 				<blockquote>

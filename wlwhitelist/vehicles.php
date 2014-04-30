@@ -55,6 +55,7 @@ for($i=0; $i<count($suche); $i++) {
 <html lang="en">
 	<head>
 		<meta charset="utf-8">
+		<meta http-equiv="content-type" content="text/html; charset=utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<meta name="description" content="">
@@ -100,6 +101,9 @@ for($i=0; $i<count($suche); $i++) {
 					<li><a href="vehicles.php">Fahrzeuge</a></li>
 					<?php if ($admin->donatorstatus == 1){ ?>
 					<li><a href="donatoren.php">Donator</a></li>
+					<?php } ?>
+					<?php if ($admin->modleitung == 1){ ?>
+					<li><a href="mod_replaces.php">Replaces</a></li>
 					<?php } ?>
 				</ul>
 			</div>
