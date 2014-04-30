@@ -53,7 +53,7 @@ if(isset ($_POST["pl_update"]) AND $_POST["pl_update"] == 1){
 	
 	//	FUNKTIONSFÄHIGES STATEMENT!
 	$db = new mysqli($mysqlhost, $mysqluser, $mysqlpass, $mysqldb);
-	if($stmt = $db->prepare("UPDATE players SET cash=?, bankacc=?, coplevel=?, cop_licenses=?, civ_licenses=?, arrested=?, donatorlvl=?, blacklist=?, reblevel=?, $adaclevel=? WHERE playerid = ?")){
+	if($stmt = $db->prepare("UPDATE players SET cash=?, bankacc=?, coplevel=?, cop_licenses=?, civ_licenses=?, arrested=?, donatorlvl=?, blacklist=?, reblevel=?, adaclevel=? WHERE playerid = ?")){
 		$stmt->bind_param("iisssssssss", $cash, $bankacc, $coplevel, $coplic2, $civlic2, $arrested, $donatorlvl, $blacklist, $reblevel, $adaclevel, $playerid1);
 		$stmt->execute();
 		if ($stmt->errno) {
