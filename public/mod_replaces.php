@@ -96,7 +96,7 @@ for($i=0; $i<count($suche); $i++) {
 				</ul>
 			</div>
 			<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-			<h1 class="page-header">Moderator Ersetungen<h1>
+			<h1 class="page-header">Moderator Ersetungen</h1>
 			
 			<?php
 			$altislife->lesen($tabelle, "", "admin", "");
@@ -113,10 +113,10 @@ for($i=0; $i<count($suche); $i++) {
 									$moderatoren = mysql_fetch_object($altislife->daten);
 									?>
 									<option name="mods<?print $m;?>"><?print utf8_decode($moderatoren->admin); ?></option>
-									</select>
 									<?php
 								}
 								?>
+								</select>
 							</div>
 						</div>
 						<button type="submit" class="btn btn-default">Abfrage starten</button>

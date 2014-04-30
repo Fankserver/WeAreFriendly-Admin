@@ -132,7 +132,11 @@ include("./php/functions.php");
 												<td><? print $carreplace->admin; ?></td>
 												<td><? print $carreplace->playerid; ?></td>
 												<td><? print date('l, d F Y G:i:s', ($carreplace->timestamp)); ?></td>
-												<td><? print $carreplace->vehicle; ?></td>
+												<?php
+												$carname = $altislife->lesen("vehicles", "id='".$carreplace->vehicle."'", "", "", "J");
+												$carname = mysql_fetch_object($carname);
+												?>
+												<td><? print $carname->vehicle; ?></td>
 											</tr>
 										</form>
 									<?php }	?>
