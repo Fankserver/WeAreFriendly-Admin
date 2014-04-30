@@ -17,11 +17,24 @@ include("waf.class.php");
 
 $altislife=new arma($mysqlhost,$mysqluser,$mysqlpass,$mysqldb);
 
+class DatabaseManager{
+    function DatabaseManager(){
+        mysql_connect($mysqlhost, $mysqluser, $mysqlpass);
+        mysql_select_db($mysqldb);
+    }
+
+    function query($query){
+        $result = mysql_query($query);
+        return $result;
+    }
+
+} 
+
 $altislife->lesen("admins", "admin='".$_SERVER["PHP_AUTH_USER"]."'", "", "");
 $admin = mysql_fetch_object($altislife->daten);
 
 
 //	Konfiguration globaler Strings (Titel, Copyright etc.)
 $title = "[=WAF=] Admin 2.0";
-$copy  = "(c) ".date("Y")." - powered by Eisbaer & nano ..::.. Version 1.1.2";
+$copy  = "(c) ".date("Y")." - powered by Eisbaer & nano ..::.. Version 1.6";
 ?>
