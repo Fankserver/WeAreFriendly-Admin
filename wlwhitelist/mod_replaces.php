@@ -102,7 +102,7 @@ for($i=0; $i<count($suche); $i++) {
 			$altislife->lesen($tabelle, "", "admin", "");
 			?>
 				<div class="col-md-6">
-					<form action="mod_replace.php" method="POST">
+					<form action="mod_replace.php" method="GET">
 					<input type="hidden" name="abfrage" value="1">
 						<div class="form-group">
 							<div class="form-group">
