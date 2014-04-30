@@ -228,7 +228,7 @@ if(isset ($_POST["kontakt_eintragen"]) && $_POST["kontakt_eintragen"] == 1){
 					$player = mysql_fetch_object($altislife->daten);
 					?>
 					
-					<h1 class="page-header"><?print utf8_decode($player->name);?><!-- - <a href="banrequest.php?playerid=<?php print $player->playerid;?>"><button type="submit" class="btn">Ban Anfragen</button></a></h1>-->
+					<h1 class="page-header"><?print utf8_decode($player->name);?><!-- - <a href="banrequest.php?playerid=<?php print $player->playerid;?>"><button type="submit" class="btn">Ban Anfragen</button></a>--></h1>
 					<div class="col-md-6">
 						<div class="table-responsive">
 							<p>Allgemeine Informationen</p>
