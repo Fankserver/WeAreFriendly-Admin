@@ -72,13 +72,18 @@ include("./php/config.php");
 			<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 				<h2 class="page-header">Aktuelle Infos</h2>
 				<blockquote>
-					<h3>Admintool 2.0</h3>
-					<br>
-					Wie ihr seht wurde das Admintool 2.0 veröffentlicht...<br><br>
-					Viel Spaß beim benutzen,<br>
-					Eisbaer | Flo
+					<h3>Herzlich Willkommen im Admin 2.0</h3><br>
+					Viel Spa&szlig; bei der benutzung des neuen Admintools. Sollten fragen oder fehler bei der Benutzung auftauchen so wendet euch doch bitte vertrauensvoll an [=WAF=] Eisbaer | Flo :-)<br><br>
+					Euer [=WAF=] Team.
 				</blockquote>
 				<hr />
+				<? if($admin->modleitung==1){ ?>
+					<blockquote>
+						<h3>Hallo Modleiter...</h3><br>
+						Ab sofort k&ouml;nnt ihr rechts unter "Replaces" nachsehen, was der jeweilige Moderator an welchen Tag ersetzt hat. Falls ihr fragen dazu habt, einfach bescheid sagen.<br><br>
+						Euer [=WAF=] Eisbaer | Flo
+					</blockquote>
+				<? } ?>
 			</div>
 			<div class="col-footer">
 				<h5 class="footer">

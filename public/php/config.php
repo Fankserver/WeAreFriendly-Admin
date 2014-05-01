@@ -28,11 +28,10 @@ class DatabaseManager{
         return $result;
     }
 
-} 
+}
 
 $altislife->lesen("admins", "admin='".$_SERVER["PHP_AUTH_USER"]."'", "", "");
 $admin = mysql_fetch_object($altislife->daten);
-
 
 //	Konfiguration globaler Strings (Titel, Copyright etc.)
 $title = "[=WAF=] Admin 2.0";

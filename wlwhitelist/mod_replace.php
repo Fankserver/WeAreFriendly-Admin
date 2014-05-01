@@ -133,10 +133,10 @@ include("./php/functions.php");
 												<td><? print $carreplace->playerid; ?></td>
 												<td><? print date('l, d F Y G:i:s', ($carreplace->timestamp)); ?></td>
 												<?php
-												$carname = $altislife->lesen("vehicles", "id='".$carreplace->vehicle."'", "", "", "J");
-												$carname = mysql_fetch_object($carname);
+												$carnames = $altislife->lesen("vehicles", "id='".$carreplace->vehicle."'", "", "", "J");
+												$carname = mysql_fetch_object($carnames);
 												?>
-												<td><? print $carname->classname; ?></td>
+												<td><?print $carname->classname; ?></td>
 											</tr>
 										</form>
 									<?php }	?>

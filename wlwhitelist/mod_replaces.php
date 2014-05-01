@@ -107,7 +107,7 @@ for($i=0; $i<count($suche); $i++) {
 						<div class="form-group">
 							<div class="form-group">
 								<p><strong>Moderatoren:</strong></p>
-								<select class="selectpicker" name="mods[]">
+								<select class="selectpicker" name="mods">
 								<?php
 								for($m=0; $m<mysql_num_rows($altislife->daten); $m++){
 									$moderatoren = mysql_fetch_object($altislife->daten);

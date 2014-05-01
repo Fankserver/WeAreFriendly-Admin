@@ -17,6 +17,10 @@ include("./php/functions.php");
 $altislife->lesen($tabelle, "playerid = '".$playerid."'", "", "");
 $werte = mysql_fetch_object($altislife->daten);
 
+//	Auslesen des Adminstatus und den Berechtigungen :-)
+$altislife->lesen("admins", "admin='".$_SERVER["PHP_AUTH_USER"]."'", "", "");
+$admin = mysql_fetch_object($altislife->daten);
+
 
 //	Update der Daten.
 if(isset ($_POST["pl_update"]) AND $_POST["pl_update"] == 1){
@@ -75,6 +79,9 @@ if(isset ($_POST["pl_update"]) AND $_POST["pl_update"] == 1){
 	$cashflow = 0;
 	$cashflow_hand = 0;
 	$cashflow_bank = 0;
+	
+	/*
+	//	Beta Cashflow logging. Momentan noch nicht aktiv.
 	if($cash != $_POST["money_hand_old"]){
 		if($cash > $_POST["money_hand_old"]){ $cashflow_hand = $cash - $_POST["money_hand_old"]; }
 		elseif($cash < $_POST["money_hand_old"]){ $cashflow_hand = $_POST["money_hand_old"] - $cash; }
@@ -84,10 +91,11 @@ if(isset ($_POST["pl_update"]) AND $_POST["pl_update"] == 1){
 		elseif($bankacc < $_POST["money_bank_old"]){ $cashflow_bank = $_POST["money_bank_old"] - $bankacc; }
 	}
 	$cashflow = $cashflow_hand + $cashflow_bank;
+	*/
 	
-	//	if($cash != $_POST["money_hand_old"]){$cashflow_hand = $cash - $_POST["money_hand_old"];}
-	//	if($bankacc != $_POST["money_bank_old"]){$cashflow_bank = $bankacc - $_POST["money_bank_old"];}
-	//	$cashflow = $cashflow_hand + $cashflow_bank;
+	if($cash != $_POST["money_hand_old"]){$cashflow_hand = $cash - $_POST["money_hand_old"];}
+	if($bankacc != $_POST["money_bank_old"]){$cashflow_bank = $bankacc - $_POST["money_bank_old"];}
+	$cashflow = $cashflow_hand + $cashflow_bank;
 	
 	
 	//	Logging - Lizenzen
@@ -378,6 +386,19 @@ if(isset ($_POST["kontakt_eintragen"]) && $_POST["kontakt_eintragen"] == 1){
 										</td>
 									</tr>
 									<tr>
+										<td><strong>ADAC:</strong></td>
+										<td>
+											<ul>
+												<?php if($player->adaclevel>0){ ?>
+													<li><strong>Level <?php print $player->adaclevel;?></strong></li>
+												<?php }
+												elseif($player->adaclevel==0){ ?>
+													<li>Level <?php print $player->adaclevel;?></li>
+												<?php } ?>
+											</ul>
+										</td>
+									</tr>
+									<tr>
 										<td><strong>Fahrzeuge:</strong></td>
 										<td>
 											<ul>
@@ -397,7 +418,7 @@ if(isset ($_POST["kontakt_eintragen"]) && $_POST["kontakt_eintragen"] == 1){
 						<form  id="formLicences" name="formLicenses" method="post" action="">
 							<input name="pl_update" 	type="hidden" id="pl_update" 	value="1">
 							<input name="player_id" 	type="hidden" id="player_id" 	value="<?print $player->playerid;?>">
-							<!--<input name="adminlevel" 	type="hidden" id="adminlevel" 	value="<?print $player->adminlevel;?>">-->
+							<input name="adminlevel" 	type="hidden" id="adminlevel" 	value="<?print $player->adminlevel;?>">
 							<input name="adminid"		type="hidden" id="adminid"		value="<?print $admins->id;?>">
 							<input name="admin"			type="hidden" id="admin"		value="<?print $admins->admin;?>">
 							
@@ -495,14 +516,18 @@ if(isset ($_POST["kontakt_eintragen"]) && $_POST["kontakt_eintragen"] == 1){
 									</optgroup>
 								</select>
 							</div>
-							<div class="form-group">
-								<p><strong>ADAC Level:</strong></p>
-								<select class="selectpicker" name="adaclevel">
-									<option name="adaclevel0"  	<?php if($player->adaclevel == 0){print "selected";}?>>0</option>
-									<option name="adaclevel1"  	<?php if($player->adaclevel == 1){print "selected";}?>>1</option>
-								</select>
-							</div>
-							<?php
+							<? if($admin->donatorstatus == 1){
+								?>
+								<div class="form-group">
+									<p><strong>Donatorlevel:</strong></p>
+									<select class="selectpicker" name="donatorlvl">
+									<option name="donatorlvl0"  <?php if($player->donatorlvl == 0){print "selected";}?>>0</option>
+									<option name="donatorlvl1"  <?php if($player->sonatorlvl == 1){print "selected";}?>>1</option>
+									<option name="donatorlvl2"  <?php if($player->donatorlvl == 2){print "selected";}?>>2</option>
+									<option name="donatorlvl3"  <?php if($player->donatorlvl == 3){print "selected";}?>>3</option>
+									</select>
+								</div>
+							<? }
 							if($admin->copstatus == 1){
 								?>
 								<div class="form-group">
@@ -520,8 +545,7 @@ if(isset ($_POST["kontakt_eintragen"]) && $_POST["kontakt_eintragen"] == 1){
 									<option name="coplevel9"  	<?php if($player->coplevel == 9){print "selected";}?>>9</option>
 									</select>
 								</div>
-								<?php
-							}
+							<? }
 							if($admin->rebellenstatus == 1){
 								?>
 								<div class="form-group">
@@ -533,22 +557,14 @@ if(isset ($_POST["kontakt_eintragen"]) && $_POST["kontakt_eintragen"] == 1){
 										<option name="reblevel3"  	<?php if($player->reblevel == 3){print "selected";}?>>3</option>
 									</select>
 								</div>
-								<?php
-							}
-							if($admin->donatorstatus == 1){
-								?>
-								<div class="form-group">
-									<p><strong>Donatorlevel:</strong></p>
-									<select class="selectpicker" name="donatorlvl">
-									<option name="donatorlvl0"  <?php if($player->donatorlvl == 0){print "selected";}?>>0</option>
-									<option name="donatorlvl1"  <?php if($player->sonatorlvl == 1){print "selected";}?>>1</option>
-									<option name="donatorlvl2"  <?php if($player->donatorlvl == 2){print "selected";}?>>2</option>
-									<option name="donatorlvl3"  <?php if($player->donatorlvl == 3){print "selected";}?>>3</option>
-									</select>
-								</div>
-								<?php
-							}
-							?>
+							<? } ?>
+							<div class="form-group">
+								<p><strong>ADAC Level:</strong></p>
+								<select class="selectpicker" name="adaclevel">
+									<option name="adaclevel0"  	<?php if($player->adaclevel == 0){print "selected";}?>>0</option>
+									<option name="adaclevel1"  	<?php if($player->adaclevel == 1){print "selected";}?>>1</option>
+								</select>
+							</div>
 							<div class="form-group">
 								<p><strong>Blacklist:</strong>&nbsp;<input type="checkbox" name="blacklist" <?php if($player->blacklist == 1){print "checked";}?>></p>
 								<p><strong>Arrested:</strong>&nbsp;<input type="checkbox" name="arrested"   <?php if($player->arrested  == 1){print "checked";}?>></p>
