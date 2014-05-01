@@ -5,6 +5,7 @@
 $tabelle  = "players";
 $playerid = $_GET["playerid"];
 $timestamp = time();
+$wafmod = $_SERVER["PHP_AUTH_USER"];
 
 #$tables = array();
 #$args	= array();
@@ -17,15 +18,12 @@ include("./php/functions.php");
 $altislife->lesen($tabelle, "playerid = '".$playerid."'", "", "");
 $werte = mysql_fetch_object($altislife->daten);
 
-//	Auslesen des Adminstatus und den Berechtigungen :-)
-$altislife->lesen("admins", "admin='".$_SERVER["PHP_AUTH_USER"]."'", "", "");
-$admin = mysql_fetch_object($altislife->daten);
-
 
 //	Update der Daten.
 if(isset ($_POST["pl_update"]) AND $_POST["pl_update"] == 1){
 	include("./php/ausleseschleife.php");
 	
+	if(isset($_POST["wafmod"])){ $wafmod = $_POST["wafmod"]; }
 	$playeruid = $_POST["player_uid"];
 	$playerid1 = $_POST["player_id"];
 	$playername = $_POST["player_name"];
@@ -146,6 +144,10 @@ if(isset ($_POST["pl_update"]) AND $_POST["pl_update"] == 1){
 	else
 		print $db->error;
 	$db->close();
+
+	//	Auslesen des Adminstatus und den Berechtigungen bei absenden des Formulars :-)
+	$altislife->lesen("admins", "admin='".$wafmod."'", "", "");
+	$admin = mysql_fetch_object($altislife->daten);	
 }
 
 
@@ -421,6 +423,7 @@ if(isset ($_POST["kontakt_eintragen"]) && $_POST["kontakt_eintragen"] == 1){
 							<input name="adminlevel" 	type="hidden" id="adminlevel" 	value="<?print $player->adminlevel;?>">
 							<input name="adminid"		type="hidden" id="adminid"		value="<?print $admins->id;?>">
 							<input name="admin"			type="hidden" id="admin"		value="<?print $admins->admin;?>">
+							<input name="wafmod"		type="hidden" id="wafmod"		value="<?print $admins->admin;?>">
 							
 							<?php
 							$civli = multimatch($player->civ_licenses);
