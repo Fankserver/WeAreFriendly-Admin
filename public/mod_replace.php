@@ -101,7 +101,7 @@ include("./php/functions.php");
 											<input type="hidden" name="id" 	id="id" 	value="<? print $modreplace->id; ?>">
 											<tr class="success">
 												<td><? print $modreplace->admin; ?></td>
-												<td><? print $modreplace->playerid; ?></td>
+												<td><a href="player.php?playerid=<?print $modreplace->playerid;?>" target="_blank"><?print $modreplace->playerid;?></a></td>
 												<td><? print date('l, d F Y G:i:s', ($modreplace->timestamp)); ?></td>
 												<td><? print $modreplace->money; ?></td>
 												<td><? print $modreplace->lizenzen; ?></td>
@@ -130,7 +130,7 @@ include("./php/functions.php");
 											<input type="hidden" name="id" 	id="id" 	value="<? print $carreplace->id; ?>">
 											<tr class="success">
 												<td><? print $carreplace->admin; ?></td>
-												<td><? print $carreplace->playerid; ?></td>
+												<td><a href="player.php?playerid=<?print $modreplace->playerid;?>" target="_blank"><?print $modreplace->playerid;?></a></td>
 												<td><? print date('l, d F Y G:i:s', ($carreplace->timestamp)); ?></td>
 												<?php
 												$carnames = $altislife->lesen("vehicles", "id='".$carreplace->vehicle."'", "", "", "J");
