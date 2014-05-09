@@ -7,9 +7,6 @@ $playerid = $_GET["playerid"];
 $timestamp = time();
 $wafmod = $_SERVER["PHP_AUTH_USER"];
 
-#$tables = array();
-#$args	= array();
-
 //	Einbinden der Config
 include("./php/config.php");
 include("./php/functions.php");
@@ -57,7 +54,6 @@ if(isset ($_POST["pl_update"]) AND $_POST["pl_update"] == 1){
 	$coplic2 = "\"[[`license_cop_air`,".$cop_air."], [`license_cop_swat`,".$cop_swat."], [`license_cop_cg`,".$cop_cg."]]\"";
 	$civlic2 = "\"[[`license_civ_driver`,".$civ_driver."],[`license_civ_air`,".$civ_air."],[`license_civ_heroin`,".$civ_heroin."],[`license_civ_marijuana`,".$civ_marijuana."],[`license_civ_gang`,".$civ_gang."],[`license_civ_boat`,".$civ_boat."],[`license_civ_oil`,".$civ_oil."],[`license_civ_dive`,".$civ_dive."],[`license_civ_truck`,".$civ_truck."],[`license_civ_gun`,".$civ_gun."],[`license_civ_rebel`,".$civ_rebel."],[`license_civ_coke`,".$civ_coke."],[`license_civ_diamond`,".$civ_diamond."],[`license_civ_copper`,".$civ_copper."],[`license_civ_iron`,".$civ_iron."],[`license_civ_sand`,".$civ_sand."],[`license_civ_salt`,".$civ_salt."],[`license_civ_cement`,".$civ_cement."]]\"";
 	
-	
 	//	FUNKTIONSFÄHIGES STATEMENT!
 	$db = new mysqli($mysqlhost, $mysqluser, $mysqlpass, $mysqldb);
 	if($stmt = $db->prepare("UPDATE players SET cash=?, bankacc=?, coplevel=?, cop_licenses=?, civ_licenses=?, arrested=?, donatorlvl=?, blacklist=?, reblevel=?, adaclevel=? WHERE playerid = ?")){
@@ -71,7 +67,6 @@ if(isset ($_POST["pl_update"]) AND $_POST["pl_update"] == 1){
 	else
 		print $db->error;
 	$db->close();
-	
 	
 	
 	//	Ab hier beginnt das Logging der Spielerdaten!
@@ -153,7 +148,6 @@ if(isset ($_POST["pl_update"]) AND $_POST["pl_update"] == 1){
 
 
 // Kontakt erfassen
-	
 if(isset ($_POST["kontakt_eintragen"]) && $_POST["kontakt_eintragen"] == 1){
 	$empty = "";
 	$admin = $_SERVER["PHP_AUTH_USER"];
@@ -229,7 +223,7 @@ if(isset ($_POST["kontakt_eintragen"]) && $_POST["kontakt_eintragen"] == 1){
 						<li class="active"><a href="index.php">Hauptmen&uuml;</a></li>
 						<li><a href="players.php">Spieler</a></li>
 						<li><a href="vehicles.php">Fahrzeuge</a></li>
-						<?php if ($admin->donatorstatus == 1){ ?>
+						<?php if ($admin-> == 1){ ?>
 						<li><a href="donatoren.php">Donator</a></li>
 						<?php } ?>
 						<?php if ($admin->modleitung == 1){ ?>
