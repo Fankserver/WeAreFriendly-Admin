@@ -92,7 +92,7 @@ include("./php/functions.php");
 										<th><strong>Coplevel:</strong></th>
 									</tr>
 									<?php
-									$replace=$altislife->lesen($tabelle1, "admin='".$mod."'", "timestamp", "", "J");
+									$replace=$altislife->lesen($tabelle1, "admin='".$mod."'", "timestamp DESC", "", "J");
 									$v=0;
 									for($v=0; $v<mysql_num_rows($replace); $v++){
 											$modreplace=mysql_fetch_object($replace);
@@ -121,7 +121,7 @@ include("./php/functions.php");
 										<th><strong>Fahrzeug:</strong></th>
 									</tr>
 									<?php
-									$replace=$altislife->lesen($tabelle2, "admin='".$mod."'", "timestamp", "", "J");
+									$replace=$altislife->lesen($tabelle2, "admin='".$mod."'", "timestamp DESC", "", "J");
 									$v=0;
 									for($v=0; $v<mysql_num_rows($replace); $v++){
 											$carreplace=mysql_fetch_object($replace);
@@ -130,7 +130,7 @@ include("./php/functions.php");
 											<input type="hidden" name="id" 	id="id" 	value="<? print $carreplace->id; ?>">
 											<tr class="success">
 												<td><? print $carreplace->admin; ?></td>
-												<td><a href="player.php?playerid=<?print $modreplace->playerid;?>" target="_blank"><?print $modreplace->playerid;?></a></td>
+												<td><a href="player.php?playerid=<?print $carreplace->playerid;?>" target="_blank"><?print $carreplace->playerid;?></a></td>
 												<td><? print date('l, d F Y G:i:s', ($carreplace->timestamp)); ?></td>
 												<?php
 												$carnames = $altislife->lesen("vehicles", "id='".$carreplace->vehicle."'", "", "", "J");
