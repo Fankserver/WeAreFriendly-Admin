@@ -126,7 +126,7 @@ if(isset ($_POST["pl_update"]) AND $_POST["pl_update"] == 1){
 		$coplevel_text = "Coplevel nicht geaendert!";
 	}
 	if($donatorlvl != $_POST["donlvl_old"]){$donator_text = "Donatorlevel von ".$_POST["donlvl_old"]." auf ".$donatorlvl." geaendert";}
-	
+	/*
 	// FUNKTIONSFÄHIGES STATEMENT! :-)
 	$db = new mysqli($mysqlhost, $mysqluser, $mysqlpass, $mysqldb);
 	if(mysqli_connect_errno()) {
@@ -144,6 +144,7 @@ if(isset ($_POST["pl_update"]) AND $_POST["pl_update"] == 1){
 	else
 		print $db->error;
 	$db->close();
+	*/
 
 	//	Auslesen des Adminstatus und den Berechtigungen bei absenden des Formulars :-)
 	$altislife->lesen("admins", "admin='".$wafmod."'", "", "");
