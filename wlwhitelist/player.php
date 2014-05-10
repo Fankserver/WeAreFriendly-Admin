@@ -21,9 +21,14 @@ $werte = mysql_fetch_object($altislife->daten);
 
 //	Update der Daten.
 if(isset ($_POST["pl_update"]) AND $_POST["pl_update"] == 1){
+	//	Auslesen des Adminstatus und den Berechtigungen bei absenden des Formulars :-)
+	$wafmod = $_POST["wafmod"];
+	
+	$altislife->lesen("admins", "admin='".$wafmod."'", "", "");
+	$admin = mysql_fetch_object($altislife->daten);	
+	
 	include("./php/ausleseschleife.php");
 	
-	if(isset($_POST["wafmod"])){ $wafmod = $_POST["wafmod"]; }
 	$playeruid = $_POST["player_uid"];
 	$playerid1 = $_POST["player_id"];
 	$playername = $_POST["player_name"];
@@ -144,10 +149,6 @@ if(isset ($_POST["pl_update"]) AND $_POST["pl_update"] == 1){
 	else
 		print $db->error;
 	$db->close();
-
-	//	Auslesen des Adminstatus und den Berechtigungen bei absenden des Formulars :-)
-	$altislife->lesen("admins", "admin='".$wafmod."'", "", "");
-	$admin = mysql_fetch_object($altislife->daten);	
 }
 
 
@@ -558,6 +559,7 @@ if(isset ($_POST["kontakt_eintragen"]) && $_POST["kontakt_eintragen"] == 1){
 										<option name="reblevel1"  	<?php if($player->reblevel == 1){print "selected";}?>>1</option>
 										<option name="reblevel2"  	<?php if($player->reblevel == 2){print "selected";}?>>2</option>
 										<option name="reblevel3"  	<?php if($player->reblevel == 3){print "selected";}?>>3</option>
+										<option name="reblevel4"  	<?php if($player->reblevel == 4){print "selected";}?>>4</option>
 									</select>
 								</div>
 							<? } ?>
