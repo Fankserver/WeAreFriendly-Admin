@@ -30,9 +30,7 @@ class DatabaseManager{
 
 }
 
-$wafmod = $_POST["wafmod"];
-
-$altislife->lesen("admins", "admin='".$wafmod."'", "", "");
+$altislife->lesen("admins", "admin='".$_SERVER["PHP_AUTH_USER"]."'", "", "");
 $admin = mysql_fetch_object($altislife->daten);
 
 //	Konfiguration globaler Strings (Titel, Copyright etc.)
