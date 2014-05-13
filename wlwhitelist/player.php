@@ -50,7 +50,7 @@ if(isset ($_POST["pl_update"]) AND $_POST["pl_update"] == 1){
 		$blacklist = 0;
 	
 	$coplic2 = "\"[[`license_cop_air`,".$cop_air."], [`license_cop_swat`,".$cop_swat."], [`license_cop_cg`,".$cop_cg."]]\"";
-	$civlic2 = "\"[[`license_civ_driver`,".$civ_driver."],[`license_civ_air`,".$civ_air."],[`license_civ_heroin`,".$civ_heroin."],[`license_civ_marijuana`,".$civ_marijuana."],[`license_civ_gang`,".$civ_gang."],[`license_civ_boat`,".$civ_boat."],[`license_civ_oil`,".$civ_oil."],[`license_civ_dive`,".$civ_dive."],[`license_civ_truck`,".$civ_truck."],[`license_civ_gun`,".$civ_gun."],[`license_civ_rebel`,".$civ_rebel."],[`license_civ_coke`,".$civ_coke."],[`license_civ_diamond`,".$civ_diamond."],[`license_civ_copper`,".$civ_copper."],[`license_civ_iron`,".$civ_iron."],[`license_civ_sand`,".$civ_sand."],[`license_civ_salt`,".$civ_salt."],[`license_civ_cement`,".$civ_cement."]]\"";
+	$civlic2 = "\"[[`license_civ_driver`,".$civ_driver."],[`license_civ_air`,".$civ_air."],[`license_civ_heroin`,".$civ_heroin."],[`license_civ_marijuana`,".$civ_marijuana."],[`license_civ_gang`,".$civ_gang."],[`license_civ_boat`,".$civ_boat."],[`license_civ_oil`,".$civ_oil."],[`license_civ_dive`,".$civ_dive."],[`license_civ_truck`,".$civ_truck."],[`license_civ_gun`,".$civ_gun."],[`license_civ_rebel`,".$civ_rebel."],[`license_civ_coke`,".$civ_coke."],[`license_civ_diamond`,".$civ_diamond."],[`license_civ_copper`,".$civ_copper."],[`license_civ_iron`,".$civ_iron."],[`license_civ_sand`,".$civ_sand."],[`license_civ_salt`,".$civ_salt."],[`license_civ_cement`,".$civ_cement."],[`license_civ_sugar`,".$civ_sugar."]]\"";
 	
 	
 	//	FUNKTIONSFÄHIGES STATEMENT!
@@ -112,6 +112,7 @@ if(isset ($_POST["pl_update"]) AND $_POST["pl_update"] == 1){
 	if($civ_sand	!= $_POST["li_sand_old"]){$lizenzen_text = $lizenzen_text."Sandlizenz, ";}
 	if($civ_salt 	!= $_POST["li_salt_old"]){$lizenzen_text = $lizenzen_text."Salzlizenz, ";}
 	if($civ_cement 	!= $_POST["li_cement_old"]){$lizenzen_text = $lizenzen_text."Zementlizenz, ";}
+	if($civ_cement 	!= $_POST["li_sugar_old"]){$lizenzen_text = $lizenzen_text."Zuckerlizenz, ";}
 	
 	if($arrested != $_POST["arrested_old"]){$lizenzen_text = $lizenzen_text."Gefaengnisstatus, ";}
 	if($blacklist != $_POST["blacklist_old"]){$lizenzen_text = $lizenzen_text."Blacklisted, ";}
@@ -228,6 +229,7 @@ if(isset ($_POST["kontakt_eintragen"]) && $_POST["kontakt_eintragen"] == 1){
 						<li class="active"><a href="index.php">Hauptmen&uuml;</a></li>
 						<li><a href="players.php">Spieler</a></li>
 						<li><a href="vehicles.php">Fahrzeuge</a></li>
+						<li><a href="whitelisting.php">Player Whitelist</a></li>
 						<?php if ($admin->donatorstatus == 1){ ?>
 						<li><a href="donatoren.php">Donator</a></li>
 						<?php } ?>
@@ -449,6 +451,7 @@ if(isset ($_POST["kontakt_eintragen"]) && $_POST["kontakt_eintragen"] == 1){
 							<input name="li_sand_old"		type="hidden"		value="<?print $civli[0][15];?>">
 							<input name="li_salt_old"		type="hidden"		value="<?print $civli[0][16];?>">
 							<input name="li_cement_old"		type="hidden"		value="<?print $civli[0][17];?>">
+							<input name="li_sugar_old"		type="hidden"		value="<?print $civli[0][18];?>">
 							
 							<input name="li_cop_air_old"	type="hidden"		value="<?print $copli[0][0];?>">
 							<input name="li_cop_swat_old"	type="hidden"		value="<?print $copli[0][1];?>">
@@ -495,6 +498,7 @@ if(isset ($_POST["kontakt_eintragen"]) && $_POST["kontakt_eintragen"] == 1){
 										<option name="li_sand"  	<?php if($civli[0][15] == 1){print "selected";}?>>Sand</option>
 										<option name="li_salt"    	<?php if($civli[0][16] == 1){print "selected";}?>>Salz</option>
 										<option name="li_cement"    <?php if($civli[0][17] == 1){print "selected";}?>>Zement</option>
+										<option name="li_sugar"    <?php if($civli[0][18] == 1){print "selected";}?>>Zucker</option>
 									</optgroup> 
 									
 									<!--Auswahlbereich für die Illegale Lizenzen-->
@@ -506,7 +510,7 @@ if(isset ($_POST["kontakt_eintragen"]) && $_POST["kontakt_eintragen"] == 1){
 									
 									<!--Auswahlbereich für die Gruppen Lizenzen-->
 									<optgroup label="Gruppen-Lizenzen">
-										<option name="li_rebel"     <?php if($civli[0][10] == 1){print "selected";}?>>Rebellen</option>
+										<option name="li_rebel"     <?php if($civli[0][10] == 1){print "selected";}?>>Schwarzmarkt</option>
 										<option name="li_gang"      <?php if($civli[0][4]  == 1){print "selected";}?>>Gang</option>
 									</optgroup>
 
@@ -514,7 +518,7 @@ if(isset ($_POST["kontakt_eintragen"]) && $_POST["kontakt_eintragen"] == 1){
 									<!--Auswahlbereich für die Cop Lizenzen-->
 									<optgroup label="Polizei-Lizenzen">
 										<option name="li_cop_air"   <?php if($copli[0][0]  == 1){print "selected";}?>>Air</option>
-										<option name="li_cop_swat"  <?php if($copli[0][1]  == 1){print "selected";}?>>SWAT</option>
+										<option name="li_cop_swat"  <?php if($copli[0][1]  == 1){print "selected";}?>>SEK-Lizenz</option>
 										<option name="li_cop_cg"    <?php if($copli[0][2]  == 1){print "selected";}?>>Coastguard</option>
 									</optgroup>
 								</select>

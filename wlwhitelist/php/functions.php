@@ -54,11 +54,12 @@ function lictext($string){
 						"license_civ_iron", 
 						"license_civ_sand", 
 						"license_civ_salt", 
-						"license_civ_cement"
+						"license_civ_cement",
+						"license_civ_sugar"
 						);
 						
 	$hannestext	= array("Cop Fluglizenz", 
-						"Cop Swatlizenz", 
+						"Cop SEK-Lizenz", 
 						"Cop K&uuml;stenwache", 
 						"Fahrerlizenz",
 						"Fluglizenz",
@@ -70,7 +71,7 @@ function lictext($string){
 						"Tauchlizenz",
 						"Trucklizenz",
 						"Waffenlizenz",
-						"Rebellenlizenz",
+						"Schwarzmarktlizenz",
 						"Kokainlizenz",
 						"Diamantenlizenz",
 						"Kupferlizenz",
@@ -78,8 +79,18 @@ function lictext($string){
 						"Sandlizenz",
 						"Salzlizenz",
 						"Zementlizenz",
+						"Zuckerlizenz"
 						);
+	
 	$string		= str_replace($steamwords, $hannestext, $string);
+	return $string;
+}
+
+//	Fahrzeuge umbenennen damit man weiss welches es ist
+function carreplace($string){
+	$car_old = array("B_Quadbike_01_F");
+	$car_new = array("Quadbike");
+	$string = str_replace($car_old, $car_new, $string);
 	return $string;
 }
 ?>

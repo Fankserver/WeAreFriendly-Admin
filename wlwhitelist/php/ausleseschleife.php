@@ -53,7 +53,7 @@ foreach ($array as $val) {
 		$civ_dive = 0;
 }
 //	Öl
-$needle = "Öl";
+$needle = "Oel";
 foreach ($array as $val) {
 	if ($val === $needle){
 		$civ_oil = 1;
@@ -162,8 +162,18 @@ foreach ($array as $val) {
 	else
 		$civ_coke = 0;
 }
+//	Sugar
+$needle = "Zucker";
+foreach ($array as $val) {
+	if ($val === $needle){
+		$civ_sugar = 1;
+		break;
+	}
+	else
+		$civ_sugar = 0;
+}
 //	Rebellen
-$needle = "Rebellen";
+$needle = "Schwarzmarkt";
 foreach ($array as $val) {
 	if ($val === $needle){
 		$civ_rebel = 1;
