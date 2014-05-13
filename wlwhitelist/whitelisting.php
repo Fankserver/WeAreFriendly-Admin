@@ -137,7 +137,7 @@ elseif(isset ($_POST["loeschen"]) AND $_POST["loeschen"] == 1){
 												<td><?print $wl_player->id;?></td>
 												<td><?print $wl_player->i_steamid;?></td>
 												<td><?print $wl_player->s_character;?></td>
-												<td><button type="submit" class="btn btn-success">Spieler L&ouml;schen</button></td>
+												<td><button type="submit" class="btn btn-warning">Spieler L&ouml;schen</button></td>
 											</tr>
 											<?php } ?>
 										</form>
@@ -153,23 +153,15 @@ elseif(isset ($_POST["loeschen"]) AND $_POST["loeschen"] == 1){
 									<th><strong>Alias:</strong></th>
 									<th><strong></strong></th>
 								</tr>
-								<?php
-								$altislife->lesen($tabelle, "", "id", "");
-								$v=0;
-								for($v=0; $v<mysql_num_rows($altislife->daten); $v++){
-										$wl_player=mysql_fetch_object($altislife->daten);
-									?>
-									<form  id="formVehicles" name="formVehicles" method="post" action="">
-										<input type="hidden" name="eintrag" id="eintrag" value="1">
-										<!--<input type="hidden" name="id" 		id="id"		 value="<? print $wl_player->id; ?>">-->
-										<tr>
-											<td><input type="text" name="id"   			value="<?print $wl_player->id;?>"></td>
-											<td><input type="text" name="i_steamid"		placeholder="Steam ID"></td>
-											<td><input type="text" name="s_character"	placeholder="Spielername"></td>
-											<td><button type="submit" class="btn btn-success">Spieler Eintragen</button></td>
-										</tr>
-										<?php } ?>
-									</form>
+								<form  id="formVehicles" name="formVehicles" method="post" action="">
+									<input type="hidden" name="eintrag" id="eintrag" value="1">
+									<tr>
+										<td><input type="text" name="id"   			value="<?print $wl_player->id;?>"></td>
+										<td><input type="text" name="i_steamid"		placeholder="Steam ID"></td>
+										<td><input type="text" name="s_character"	placeholder="Spielername"></td>
+										<td><button type="submit" class="btn btn-success">Spieler Eintragen</button></td>
+									</tr>
+								</form>
 							</tbody>
 						</table>
 					</div>
