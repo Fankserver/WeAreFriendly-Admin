@@ -37,7 +37,7 @@ if(isset ($_POST["eintrag"]) AND $_POST["eintrag"] == 1){
 elseif(isset ($_POST["loeschen"]) AND $_POST["loeschen"] == 1){
 	$wl_id = $_POST["wl_id"];
 	
-	//	FUNKTIONSFÄHIGES STATEMENT!
+	/*//	FUNKTIONSFÄHIGES STATEMENT!
 	$db = new mysqli($mysqlhost, $mysqluser, $mysqlpass, $mysqldb);
 	if($stmt = $db->prepare("DELETE FROM whitelist WHERE id =?")){
 		$stmt->bind_param("i", $wl_id);
@@ -49,7 +49,9 @@ elseif(isset ($_POST["loeschen"]) AND $_POST["loeschen"] == 1){
 	}
 	else
 		print $db->error;
-	$db->close();
+	$db->close();*/
+
+	$altislife->loeschen($tabelle, "id=".$wl_id);
 }
 //
 ?>
@@ -131,13 +133,13 @@ elseif(isset ($_POST["loeschen"]) AND $_POST["loeschen"] == 1){
 										?>
 										<form  id="formVehicles" name="formVehicles" method="post" action="">
 											<input type="hidden" name="loeschen" id="loeschen"	value="1">
-											<input type="hidden" name="wl_id" 		 id="wl_id"		value="<? print $wl_player->id; ?>">
+											<input type="hidden" name="wl_id" 	 id="wl_id"		value="<? print $wl_player->id; ?>">
 
 											<tr>
 												<td><?print $wl_player->id;?></td>
 												<td><?print $wl_player->i_steamid;?></td>
 												<td><?print $wl_player->s_character;?></td>
-												<td><button type="submit" class="btn btn-warning">Spieler L&ouml;schen</button></td>
+												<td><button type="submit" class="btn btn-danger">Spieler L&ouml;schen</button></td>
 											</tr>
 											<?php } ?>
 										</form>
@@ -156,7 +158,7 @@ elseif(isset ($_POST["loeschen"]) AND $_POST["loeschen"] == 1){
 								<form  id="formVehicles" name="formVehicles" method="post" action="">
 									<input type="hidden" name="eintrag" id="eintrag" value="1">
 									<tr>
-										<td><input type="text" name="id"   			value="<?print $wl_player->id;?>"></td>
+										<td><input type="text" name="id"   			value="<?print $wl_player->id+1;?>"></td>
 										<td><input type="text" name="i_steamid"		placeholder="Steam ID"></td>
 										<td><input type="text" name="s_character"	placeholder="Spielername"></td>
 										<td><button type="submit" class="btn btn-success">Spieler Eintragen</button></td>

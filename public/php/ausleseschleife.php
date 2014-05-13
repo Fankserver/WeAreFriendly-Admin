@@ -205,7 +205,7 @@ foreach ($array as $val) {
 		$cop_air = 0;
 }
 //	SWAT
-$needle = "SWAT";
+$needle = "SEK-Lizenz";
 foreach ($array as $val) {
 	if ($val === $needle){
 		$cop_swat = 1;
