@@ -23,7 +23,7 @@ if(isset ($_POST["eintrag"]) AND $_POST["eintrag"] == 1){
 	//	FUNKTIONSFÄHIGES STATEMENT!
 	$db = new mysqli($mysqlhost, $mysqluser, $mysqlpass, $mysqldb);
 	if($stmt = $db->prepare("INSERT INTO whitelist (id, i_steamid, i_serverid, s_character) VALUES (?, ?, ?, ?)")){
-		$stmt->bind_param("isis", $empty, $i_steamid, $i_serverid, $s_character);
+		$stmt->bind_param("iiss", $empty, $i_steamid, $i_serverid, $s_character);
 		$stmt->execute();
 		if ($stmt->errno) {
 			echo "FAILURE!!! " . $stmt->error;

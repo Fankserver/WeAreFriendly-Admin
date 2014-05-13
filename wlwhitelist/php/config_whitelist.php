@@ -3,7 +3,7 @@
 $mysqlhost="localhost";
 $mysqluser="wafwl";
 $mysqlpass="2sCvWamLnEfxZfX8";
-$mysqldb="arma3lifewhitelist";
+$mysqldb="steam";
 
 $sql=mysql_connect($mysqlhost,$mysqluser,$mysqlpass);
 $db=$mysqldb;
