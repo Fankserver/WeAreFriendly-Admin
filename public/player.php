@@ -523,6 +523,15 @@ if(isset ($_POST["kontakt_eintragen"]) && $_POST["kontakt_eintragen"] == 1){
 								</select>
 							</div>
 							<? if($admin->donatorstatus == 1){
+							?>
+							<div class="form-group">
+								<p><strong>ADAC Level:</strong></p>
+								<select class="selectpicker" name="adaclevel">
+									<option name="adaclevel0"  	<?php if($player->adaclevel == 0){print "selected";}?>>0</option>
+									<option name="adaclevel1"  	<?php if($player->adaclevel == 1){print "selected";}?>>1</option>
+								</select>
+							</div>
+							<? if($admin->adminstatus == 1){
 								?>
 								<div class="form-group">
 									<p><strong>Donatorlevel:</strong></p>

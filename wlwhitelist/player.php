@@ -229,7 +229,6 @@ if(isset ($_POST["kontakt_eintragen"]) && $_POST["kontakt_eintragen"] == 1){
 						<li class="active"><a href="index.php">Hauptmen&uuml;</a></li>
 						<li><a href="players.php">Spieler</a></li>
 						<li><a href="vehicles.php">Fahrzeuge</a></li>
-						<li><a href="whitelisting.php">Player Whitelist</a></li>
 						<?php if ($admin->donatorstatus == 1){ ?>
 						<li><a href="donatoren.php">Donator</a></li>
 						<?php } ?>
@@ -524,6 +523,15 @@ if(isset ($_POST["kontakt_eintragen"]) && $_POST["kontakt_eintragen"] == 1){
 								</select>
 							</div>
 							<? if($admin->donatorstatus == 1){
+							?>
+							<div class="form-group">
+								<p><strong>ADAC Level:</strong></p>
+								<select class="selectpicker" name="adaclevel">
+									<option name="adaclevel0"  	<?php if($player->adaclevel == 0){print "selected";}?>>0</option>
+									<option name="adaclevel1"  	<?php if($player->adaclevel == 1){print "selected";}?>>1</option>
+								</select>
+							</div>
+							<? if($admin->adminstatus == 1){
 								?>
 								<div class="form-group">
 									<p><strong>Donatorlevel:</strong></p>
