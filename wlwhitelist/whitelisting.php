@@ -36,11 +36,12 @@ if(isset ($_POST["eintrag"]) AND $_POST["eintrag"] == 1){
 }
 elseif(isset ($_POST["loeschen"]) AND $_POST["loeschen"] == 1){
 	$wl_id = $_POST["wl_id"];
+	$wl_st = $_POST["i_steamid"];
 	
-	/*//	FUNKTIONSFÄHIGES STATEMENT!
+	//	FUNKTIONSFÄHIGES STATEMENT!
 	$db = new mysqli($mysqlhost, $mysqluser, $mysqlpass, $mysqldb);
-	if($stmt = $db->prepare("DELETE FROM whitelist WHERE id =?")){
-		$stmt->bind_param("i", $wl_id);
+	if($stmt = $db->prepare("DELETE FROM whitelist WHERE id=? AND i_steamid=?")){
+		$stmt->bind_param("ii", $wl_id, $wl_st);
 		$stmt->execute();
 		if ($stmt->errno) {
 			echo "FAILURE!!! " . $stmt->error;
@@ -49,9 +50,9 @@ elseif(isset ($_POST["loeschen"]) AND $_POST["loeschen"] == 1){
 	}
 	else
 		print $db->error;
-	$db->close();*/
+	$db->close();
 
-	$altislife->loeschen($tabelle, "id=".$wl_id);
+	// $altislife->loeschen($tabelle, "id=".$wl_id);
 }
 //
 ?>
@@ -134,6 +135,7 @@ elseif(isset ($_POST["loeschen"]) AND $_POST["loeschen"] == 1){
 										<form  id="formVehicles" name="formVehicles" method="post" action="">
 											<input type="hidden" name="loeschen" id="loeschen"	value="1">
 											<input type="hidden" name="wl_id" 	 id="wl_id"		value="<? print $wl_player->id; ?>">
+											<input type="hidden" name="wl_steam" id="wl_steam"	value="<? print $wl_player->i_steamid; ?>">
 
 											<tr>
 												<td><?print $wl_player->id;?></td>
