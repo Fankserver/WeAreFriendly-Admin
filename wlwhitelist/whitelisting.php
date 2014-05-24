@@ -39,7 +39,7 @@ elseif(isset ($_POST["loeschen"]) AND $_POST["loeschen"] == 1){
 	$wl_st = $_POST["i_steamid"];
 	
 	//	FUNKTIONSFÄHIGES STATEMENT!
-	$db = new mysqli($mysqlhost, $mysqluser, $mysqlpass, $mysqldb);
+	/*$db = new mysqli($mysqlhost, $mysqluser, $mysqlpass, $mysqldb);
 	if($stmt = $db->prepare("DELETE FROM whitelist WHERE id=? AND i_steamid=?")){
 		$stmt->bind_param("ii", $wl_id, $wl_st);
 		$stmt->execute();
@@ -50,9 +50,9 @@ elseif(isset ($_POST["loeschen"]) AND $_POST["loeschen"] == 1){
 	}
 	else
 		print $db->error;
-	$db->close();
+	$db->close();*/
 
-	// $altislife->loeschen($tabelle, "id=".$wl_id);
+	$altislife->loeschen($tabelle, "id='".$wl_id."'");
 }
 //
 ?>
