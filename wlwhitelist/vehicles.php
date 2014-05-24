@@ -20,13 +20,13 @@ if(strlen($_GET["inputSteamId"])>0){
 elseif(strlen($_GET["inputPlayerName"])>0){
 	$field = "name";
 	$suche = $_GET["inputPlayerName"];
-	$suchabfrage = $field." = '".$suche."'";
+	$suchabfrage = $field." like '%".$suche."%'";
 }
 
 elseif(strlen($_GET["inputAlias"])>0){
 	$field = "aliases";
 	$suche = $_GET["inputAlias"];
-	$suchabfrage = $field." like '%%".$suche."%%'";
+	$suchabfrage = $field." like '%".$suche."%'";
 }
 else
 	$suchabfrage = "";
@@ -99,7 +99,6 @@ for($i=0; $i<count($suche); $i++) {
 					<li class="active"><a href="index.php">Hauptmen&uuml;</a></li>
 					<li><a href="players.php">Spieler</a></li>
 					<li><a href="vehicles.php">Fahrzeuge</a></li>
-					<li><a href="whitelisting.php">Player Whitelist</a></li>
 					<?php if ($admin->donatorstatus == 1){ ?>
 					<li><a href="donatoren.php">Donator</a></li>
 					<?php } ?>

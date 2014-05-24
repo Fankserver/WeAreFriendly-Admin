@@ -15,7 +15,7 @@ class arma {
 		}
 	}
 	
-	function lesen($tabelle, $where="", $order="", $limit="", $ausgabe="", $felder="") {
+	function lesen($tabelle, $where="", $order="", $limit="", $ausgabe="", $felder=""){
 		if(!$this->mysqllink) {
 			return FALSE;
 		}

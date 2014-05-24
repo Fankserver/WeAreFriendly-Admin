@@ -20,13 +20,13 @@ if(strlen($_GET["inputSteamId"])>0){
 elseif(strlen($_GET["inputPlayerName"])>0){
 	$field = "name";
 	$suche = $_GET["inputPlayerName"];
-	$suchabfrage = $field." = '".$suche."'";
+	$suchabfrage = $field." like '%".$suche."%'";
 }
 
 elseif(strlen($_GET["inputAlias"])>0){
 	$field = "aliases";
 	$suche = $_GET["inputAlias"];
-	$suchabfrage = $field." like '%%".$suche."%%'";
+	$suchabfrage = $field." like '%".$suche."%'";
 }
 else
 	$suchabfrage = "";
@@ -134,7 +134,7 @@ for($i=0; $i<count($suche); $i++) {
 				//	Hier geschieht das Auslesen der Player Datenbank. Damit die Seite nicht zu voll ist, werden immer nur 20 Player pro Content angezeigt!
 				//	$altislife->lesen($tabelle, $suchabfrage, $sortierung, "$offset, $maxzeilen");
 				if($_GET["abfrage"] == 1){
-				$altislife->lesen($tabelle, $suchabfrage, $sortierung, "0, 10");
+				$altislife->lesen($tabelle, $suchabfrage, $sortierung, "0, 15");
 				?>
 				<div class="col-md-12">
 					<h3 class="sub-header">Suchergebnisse:</h3>
