@@ -14,7 +14,7 @@ $offset=intval($_GET["offset"]);
 if(strlen($_GET["inputSteamId"])>0){
 	$field = "playerid";
 	$suche = $_GET["inputSteamId"];
-	$suchabfrage = $field." = '".$suche."'";
+	$suchabfrage = $field." like '%".$suche."%'";
 }
 	
 elseif(strlen($_GET["inputPlayerName"])>0){
