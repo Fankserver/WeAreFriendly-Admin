@@ -15,7 +15,7 @@ include("./php/functions.php");
 
 
 //	Update der Daten.
-/*if(isset ($_POST["pl_update"]) AND $_POST["pl_update"] == 1){
+if(isset ($_POST["pl_update"]) AND $_POST["pl_update"] == 1){
 	
 	$adminid		= $_POST["adminid"];
 	$adminname		= $_POST["admin"];
@@ -40,7 +40,7 @@ include("./php/functions.php");
 	else
 		print $db->error;
 	$db->close();
-}*/
+}
 ?>
 
 <!DOCTYPE html>
@@ -97,12 +97,15 @@ include("./php/functions.php");
 						<?php if ($admin->modleitung == 1){ ?>
 						<li><a href="mod_replaces.php">Replaces</a></li>
 						<?php } ?>
+						<?php if ($_SERVER["PHP_AUTH_USER"] == "eisbaer"){ ?>
+						<li><a href="admins.php">Admins</a></li>
+						<?php } ?>
 					</ul>
 				</div>
 				<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 					
 					<?php
-					$altislife->lesen($tabelle1, "admin='".$mod."'", "", "",);
+					$altislife->lesen($tabelle1, "admin='".$mod."'", "", "");
 					$admin = mysql_fetch_object($altislife->daten);
 					?>
 					<form  id="formLicences" name="formLicenses" method="post" action="">
