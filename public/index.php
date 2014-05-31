@@ -40,12 +40,12 @@ include("./php/config.php");
 				<ul class="nav navbar-nav navbar-right">
 					<li class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown"> AltisLife Public Server <b class="caret"></b></a>
-						<ul class="dropdown-menu">
+						<!--<ul class="dropdown-menu">
 							<li><a href="">AltisLife Public Server</a></li>
 							<?php if($admin->whitelist == 1){ ?>
 								<li><a href="../wlwhitelist">AltisLife Whitelist Server</a></li>
 							<?php } ?>
-						</ul>
+						</ul>-->
 					</li>
 				</ul>
 			</div>
