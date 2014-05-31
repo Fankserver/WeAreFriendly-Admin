@@ -29,7 +29,7 @@ if(isset ($_POST["pl_update"]) AND $_POST["pl_update"] == 1){
 	
 	//	FUNKTIONSFÄHIGES STATEMENT!
 	$db = new mysqli($mysqlhost, $mysqluser, $mysqlpass, $mysqldb);
-	if($stmt = $db->prepare("UPDATE admins SET adminlevel=?, whitelist=?, copstatus=?, donatorstatus=?, rebellenstatus=?, adminstatus=?, modleitung=? WHERE id=?")){
+	if($stmt = $db->prepare("UPDATE admins SET level=?, whitelist=?, copstatus=?, donatorstatus=?, rebellenstatus=?, adminstatus=?, modleitung=? WHERE id=?")){
 		$stmt->bind_param("iiiiiii", $adminlevel, $whitelist, $copstatus, $donatorstatus, $rebellenstatus, $adminstatus, $modleitung, $adminid);
 		$stmt->execute();
 		if ($stmt->errno) {
@@ -140,16 +140,17 @@ if(isset ($_POST["pl_update"]) AND $_POST["pl_update"] == 1){
 										<p><strong>Rebellstatus:</strong>&nbsp;<input type="checkbox" name="rebellenstatus" <?php if($admin->rebellenstatus  == 1){print "checked";}?>></p>
 										<p><strong>Modleitung:</strong>&nbsp;<input type="checkbox" name="modleitung"   	<?php if($admin->modleitung  == 1){print "checked";}?>></p>
 									</div>
+									<BR><button type="submit" class="btn btn-success">Änderungen speichern</button>
 								</table>
 								<BR>
 							</div>
-							<div class="col-footer">
-								<h5 class="footer">
-									<footer><cite title="Footer Copyright"><?print $copy;?></cite></footer>
-								</h5>
-							</div>
 						</div>
 					</form>
+					<div class="col-footer">
+						<h5 class="footer">
+							<footer><cite title="Footer Copyright"><?print $copy;?></cite></footer>
+						</h5>
+					</div>
 				</div>
 			</div>
 
