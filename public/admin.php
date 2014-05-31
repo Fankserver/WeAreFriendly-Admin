@@ -30,7 +30,7 @@ if(isset ($_POST["pl_update"]) AND $_POST["pl_update"] == 1){
 	//	FUNKTIONSFÄHIGES STATEMENT!
 	$db = new mysqli($mysqlhost, $mysqluser, $mysqlpass, $mysqldb);
 	if($stmt = $db->prepare("UPDATE admins SET level=?, whitelist=?, copstatus=?, donatorstatus=?, rebellenstatus=?, adminstatus=?, modleitung=? WHERE id=?")){
-		$stmt->bind_param("iiiiiii", $adminlevel, $whitelist, $copstatus, $donatorstatus, $rebellenstatus, $adminstatus, $modleitung, $adminid);
+		$stmt->bind_param("iiiiiiii", $adminlevel, $whitelist, $copstatus, $donatorstatus, $rebellenstatus, $adminstatus, $modleitung, $adminid);
 		$stmt->execute();
 		if ($stmt->errno) {
 			echo "FAILURE!!! " . $stmt->error;
