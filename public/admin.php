@@ -20,12 +20,37 @@ if(isset ($_POST["pl_update"]) AND $_POST["pl_update"] == 1){
 	$adminid		= $_POST["adminid"];
 	$adminname		= $_POST["admin"];
 	$adminlevel		= $_POST["adminlevel"];
-	$whitelist 		= $_POST["whitelist"];
-	$donatorstatus	= $_POST["donatorstatus"];
-	$copstatus		= $_POST["copstatus"];
-	$rebellenstatus	= $_POST["rebellenstatus"];
-	$adminstatus 	= $_POST["adminstatus"];
-	$modleitung 	= $_POST["modleitung"];
+	
+	if($_POST["whitelist"] == "on")
+		$whitelist = 1;
+	else
+		$whitelist = 0;
+	
+	if($_POST["donatorstatus"] == "on")
+		$donatorstatus = 1;
+	else
+		$donatorstatus = 0;
+
+	if($_POST["copstatus"] == "on")
+		$copstatus = 1;
+	else
+		$copstatus = 0;
+
+	if($_POST["rebellenstatus"] == "on")
+		$rebellenstatus = 1;
+	else
+		$rebellenstatus = 0;
+
+	if($_POST["adminstatus"] == "on")
+		$adminstatus = 1;
+	else
+		$adminstatus = 0;
+		
+	if($_POST["modleitung"] == "on")
+		$modleitung = 1;
+	else
+		$modleitung = 0;
+
 	
 	//	FUNKTIONSFÄHIGES STATEMENT!
 	$db = new mysqli($mysqlhost, $mysqluser, $mysqlpass, $mysqldb);
