@@ -15,17 +15,17 @@ include("./php/functions.php");
 
 
 //	Update der Daten.
-if(isset ($_POST["pl_update"]) AND $_POST["pl_update"] == 1){
+/*if(isset ($_POST["pl_update"]) AND $_POST["pl_update"] == 1){
 	
-	$adminid		= $_GET["adminid"];
-	$admin			= $_GET["admin"];
-	$adminlevel		= $_GET["adminlevel"];
-	$whitelist 		= $_GET["whitelist"];
-	$donatorstatus	= $_GET["donatorstatus"];
-	$copstatus		= $_GET["copstatus"];
-	$rebellenstatus	= $_GET["rebellenstatus"];
-	$adminstatus 	= $_GET["adminstatus"];
-	$modleitung 	= $_GET["modleitung"];
+	$adminid		= $_POST["adminid"];
+	$adminname		= $_POST["admin"];
+	$adminlevel		= $_POST["adminlevel"];
+	$whitelist 		= $_POST["whitelist"];
+	$donatorstatus	= $_POST["donatorstatus"];
+	$copstatus		= $_POST["copstatus"];
+	$rebellenstatus	= $_POST["rebellenstatus"];
+	$adminstatus 	= $_POST["adminstatus"];
+	$modleitung 	= $_POST["modleitung"];
 	
 	//	FUNKTIONSFÄHIGES STATEMENT!
 	$db = new mysqli($mysqlhost, $mysqluser, $mysqlpass, $mysqldb);
@@ -40,11 +40,11 @@ if(isset ($_POST["pl_update"]) AND $_POST["pl_update"] == 1){
 	else
 		print $db->error;
 	$db->close();
-}
+}*/
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 	<head>
 		<meta charset="utf-8">
 		<meta http-equiv="content-type" content="text/html; charset=utf-8">
@@ -117,16 +117,16 @@ if(isset ($_POST["pl_update"]) AND $_POST["pl_update"] == 1){
 									<div class="form-group">
 										<p><strong>Adminlevel:</strong></p>
 										<select class="selectpicker" name="adminlevel">
-											<option name="adminlevel0"  	<?php if($admin->adminlevel == 0){print "selected";}?>>0</option>
-											<option name="adminlevel1"  	<?php if($admin->adminlevel == 1){print "selected";}?>>1</option>
-											<option name="adminlevel2"  	<?php if($admin->adminlevel == 2){print "selected";}?>>2</option>
-											<option name="adminlevel3"  	<?php if($admin->adminlevel == 3){print "selected";}?>>3</option>
-											<option name="adminlevel4"  	<?php if($admin->adminlevel == 4){print "selected";}?>>4</option>
-											<option name="adminlevel5"  	<?php if($admin->adminlevel == 5){print "selected";}?>>5</option>
-											<option name="adminlevel6"  	<?php if($admin->adminlevel == 6){print "selected";}?>>6</option>
-											<option name="adminlevel7"  	<?php if($admin->adminlevel == 7){print "selected";}?>>7</option>
-											<option name="adminlevel8"  	<?php if($admin->adminlevel == 8){print "selected";}?>>8</option>
-											<option name="adminlevel9"  	<?php if($admin->adminlevel == 9){print "selected";}?>>9</option>
+											<option name="adminlevel0"  	<?php if($admin->level == 0){print "selected";}?>>0</option>
+											<option name="adminlevel1"  	<?php if($admin->level == 1){print "selected";}?>>1</option>
+											<option name="adminlevel2"  	<?php if($admin->level == 2){print "selected";}?>>2</option>
+											<option name="adminlevel3"  	<?php if($admin->level == 3){print "selected";}?>>3</option>
+											<option name="adminlevel4"  	<?php if($admin->level == 4){print "selected";}?>>4</option>
+											<option name="adminlevel5"  	<?php if($admin->level == 5){print "selected";}?>>5</option>
+											<option name="adminlevel6"  	<?php if($admin->level == 6){print "selected";}?>>6</option>
+											<option name="adminlevel7"  	<?php if($admin->level == 7){print "selected";}?>>7</option>
+											<option name="adminlevel8"  	<?php if($admin->level == 8){print "selected";}?>>8</option>
+											<option name="adminlevel9"  	<?php if($admin->level == 9){print "selected";}?>>9</option>
 										</select>
 									</div>
 									<div class="form-group">
