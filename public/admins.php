@@ -1,12 +1,49 @@
 <?php
+//	Vehicleauflistung komplett.
+//	(c) 2014 by Eisbaer | Flo
+
 //	Einbinden der Config
 include("./php/config.php");
+include("./php/functions.php");
+$tabelle = "admins";
+
+$maxzeilen=20;
+
+$offset=intval($_GET["offset"]);
+
+if(strlen($_GET["admin"])>0){
+	$field = "admin";
+	$suche = $_GET["admin"];
+	$suchabfrage = $field." = '".$suche."'";
+}
+else
+	$suchabfrage = "";
+
+$suche=$_GET["suche"];
+
+
+/*
+for($i=0; $i<count($suche); $i++) {
+	$einschraenkung=current($suche);
+	if(strlen($einschraenkung)) {
+		if(strlen($suchabfrage)>0) {
+			$suchabfrage.=" AND ";
+			$getsuche.="&";
+		}
+		$suchabfrage.=key($suche)." like '%%".$einschraenkung."%%'";
+		$getsuche.="suche[".key($suche)."]=".urlencode($einschraenkung);
+	}
+	next($suche);
+}
+*/
+
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
 	<head>
 		<meta charset="utf-8">
+		<meta http-equiv="content-type" content="text/html; charset=utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<meta name="description" content="">
@@ -26,8 +63,8 @@ include("./php/config.php");
 
 		<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
 		<!--[if lt IE 9]>
-			<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-			<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+		  <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+		  <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 		<![endif]-->
 	</head>
 
@@ -36,24 +73,13 @@ include("./php/config.php");
 	<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
 		<div class="container-fluid">
 			<div class="navbar-header">
-				<a class="navbar-brand" href="index.php"><?print $title;?></a>
-				<ul class="nav navbar-nav navbar-right">
-					<li class="dropdown">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown"> AltisLife Public Server <b class="caret"></b></a>
-						<ul class="dropdown-menu">
-							<li><a href="">AltisLife Public Server</a></li>
-							<?php if($admin->whitelist == 1){ ?>
-								<li><a href="../wlwhitelist">AltisLife Whitelist Server</a></li>
-							<?php } ?>
-						</ul>
-					</li>
-				</ul>
+			<a class="navbar-brand" href="index.php"><?print $title;?></a>
 			</div>
 		</div>
 	</div>
 
 	<div class="container-fluid">
-		<div class="row">
+		<div class="row placeholders">
 			<div class="col-sm-3 col-md-2 sidebar">
 				<p>Angemeldet als:<br><em><? print $_SERVER["PHP_AUTH_USER"]; ?></em></p>
 				<br>
@@ -73,25 +99,39 @@ include("./php/config.php");
 				</ul>
 			</div>
 			<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-				<h2 class="page-header">Aktuelle Infos</h2>
-				<blockquote>
-					<h3>Herzlich Willkommen im Admin 2.0</h3><br>
-					Viel Spa&szlig; bei der benutzung des neuen Admintools. Sollten fragen oder fehler bei der Benutzung auftauchen so wendet euch doch bitte vertrauensvoll an [=WAF=] Eisbaer | Flo :-)<br><br>
-					Euer [=WAF=] Team.
-				</blockquote>
-				<hr />
-				<? if($admin->modleitung==1){ ?>
-					<blockquote>
-						<h3>Hallo Modleiter...</h3><br>
-						Ab sofort k&ouml;nnt ihr rechts unter "Replaces" nachsehen, was der jeweilige Moderator an welchen Tag ersetzt hat. Falls ihr fragen dazu habt, einfach bescheid sagen.<br><br>
-						Euer [=WAF=] Eisbaer | Flo
-					</blockquote>
-				<? } ?>
-			</div>
-			<div class="col-footer">
-				<h5 class="footer">
+			<h1 class="page-header">Moderator Ersetungen</h1>
+			
+			<?php
+			$altislife->lesen($tabelle, "", "admin", "");
+			?>
+				<div class="col-md-6">
+					<form action="admin.php" method="GET">
+					<input type="hidden" name="abfrage" value="1">
+						<div class="form-group">
+							<div class="form-group">
+								<p><strong>Moderatoren:</strong></p>
+								<select class="selectpicker" name="mods">
+								<?php
+								for($m=0; $m<mysql_num_rows($altislife->daten); $m++){
+									$moderatoren = mysql_fetch_object($altislife->daten);
+									?>
+									<option name="mods<?print $m;?>"><?print utf8_decode($moderatoren->admin); ?></option>
+									<?php
+								}
+								?>
+								</select>
+							</div>
+						</div>
+						<button type="submit" class="btn btn-default">Abfrage starten</button>
+						<button type="reset" class="btn btn-default" value="reset">Zur&uuml;cksetzen</button>
+					</form>
+				</div>
+				<div class="col-footer">
+					<h5 class="footer">
 					<footer><cite title="Footer Copyright"><?print $copy;?></cite></footer>
-				</h5>
+					</h5>
+				</div>
+				
 			</div>
 		</div>
 	</div>
