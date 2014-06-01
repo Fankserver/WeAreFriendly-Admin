@@ -153,7 +153,6 @@ if(isset ($_POST["pl_update"]) AND $_POST["pl_update"] == 1){
 
 
 // Kontakt erfassen
-	
 if(isset ($_POST["kontakt_eintragen"]) && $_POST["kontakt_eintragen"] == 1){
 	$empty = "";
 	$admin = $_SERVER["PHP_AUTH_USER"];
