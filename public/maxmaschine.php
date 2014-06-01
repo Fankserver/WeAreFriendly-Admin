@@ -92,7 +92,7 @@ for($e=0; $e < count($steamid); $e++){
 		print $db->error;
 	$db->close();
 	
-	print "Coplevel der SteamID: ".$playerold->name." von ".$playerold->coplevel." auf ".$coplevel." geaendert.<br>";
+	print "Coplevel von: <b>".$playerold->name."</b> von ".$playerold->coplevel." auf ".$coplevel." geaendert.<br>";
 }
 $anzahl = count($steamid);
 print "<br>Maxmaschine 2.0 erfolgreich beendet. Es wurden ".$anzahl." Polizisten degradiert.";
