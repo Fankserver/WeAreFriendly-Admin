@@ -36,10 +36,6 @@ for($e=0; $e < count($steamid); $e++){
 		$cop_cg = "0";
 		$coplic2 = "\"[[`license_cop_air`,".$cop_air."], [`license_cop_swat`,".$cop_swat."], [`license_cop_cg`,".$cop_cg."]]\"";
 		
-		print "Starte Maxmaschine 2.0...<br><br>";
-		print "Coplevel der SteamID: ".$steamid[$e]." von ".$playerold->coplevel." auf ".$coplevel." geaendert.<br>";
-		print "Maxmaschine 2.0 erfolgreich beendet...";
-		
 		
 		//	FUNKTIONSFÄHIGES STATEMENT!
 		/*$db = new mysqli($mysqlhost, $mysqluser, $mysqlpass, $mysqldb);
@@ -91,6 +87,11 @@ for($e=0; $e < count($steamid); $e++){
 		else
 			print $db->error;
 		$db->close();*/
+		
+		print "Starte Maxmaschine 2.0...<br><br>";
+		print "Coplevel der SteamID: ".$steamid[$e]." von ".$playerold->coplevel." auf ".$coplevel." geaendert.<br>";
+		print "Maxmaschine 2.0 erfolgreich beendet...";
+		
 	}
 }
 ?>
