@@ -112,7 +112,7 @@ if(isset ($_POST["pl_update"]) AND $_POST["pl_update"] == 1){
 	if($civ_sand	!= $_POST["li_sand_old"]){$lizenzen_text = $lizenzen_text."Sandlizenz, ";}
 	if($civ_salt 	!= $_POST["li_salt_old"]){$lizenzen_text = $lizenzen_text."Salzlizenz, ";}
 	if($civ_cement 	!= $_POST["li_cement_old"]){$lizenzen_text = $lizenzen_text."Zementlizenz, ";}
-	if($civ_cement 	!= $_POST["li_sugar_old"]){$lizenzen_text = $lizenzen_text."Zuckerlizenz, ";}
+	if($civ_sugar 	!= $_POST["li_sugar_old"]){$lizenzen_text = $lizenzen_text."Zuckerlizenz, ";}
 	
 	if($arrested != $_POST["arrested_old"]){$lizenzen_text = $lizenzen_text."Gefaengnisstatus, ";}
 	if($blacklist != $_POST["blacklist_old"]){$lizenzen_text = $lizenzen_text."Blacklisted, ";}
@@ -496,7 +496,7 @@ if(isset ($_POST["kontakt_eintragen"]) && $_POST["kontakt_eintragen"] == 1){
 										<option name="li_sand"  	<?php if($civli[0][15] == 1){print "selected";}?>>Sand</option>
 										<option name="li_salt"    	<?php if($civli[0][16] == 1){print "selected";}?>>Salz</option>
 										<option name="li_cement"    <?php if($civli[0][17] == 1){print "selected";}?>>Zement</option>
-										<option name="li_sugar"    <?php if($civli[0][18] == 1){print "selected";}?>>Zucker</option>
+										<option name="li_sugar"		<?php if($civli[0][18] == 1){print "selected";}?>>Zucker</option>
 									</optgroup> 
 									
 									<!--Auswahlbereich für die Illegale Lizenzen-->
@@ -542,6 +542,8 @@ if(isset ($_POST["kontakt_eintragen"]) && $_POST["kontakt_eintragen"] == 1){
 									<option name="donatorlvl1"  <?php if($player->sonatorlvl == 1){print "selected";}?>>1</option>
 									<option name="donatorlvl2"  <?php if($player->donatorlvl == 2){print "selected";}?>>2</option>
 									<option name="donatorlvl3"  <?php if($player->donatorlvl == 3){print "selected";}?>>3</option>
+									<option name="donatorlvl4"  <?php if($player->donatorlvl == 4){print "selected";}?>>4</option>
+									<option name="donatorlvl5"  <?php if($player->donatorlvl == 5){print "selected";}?>>5</option>
 									</select>
 								</div>
 							<? }
@@ -560,6 +562,7 @@ if(isset ($_POST["kontakt_eintragen"]) && $_POST["kontakt_eintragen"] == 1){
 									<option name="coplevel7"  	<?php if($player->coplevel == 7){print "selected";}?>>7</option>
 									<option name="coplevel8"  	<?php if($player->coplevel == 8){print "selected";}?>>8</option>
 									<option name="coplevel9"  	<?php if($player->coplevel == 9){print "selected";}?>>9</option>
+									<option name="coplevel10"  	<?php if($player->coplevel == 10){print "selected";}?>>10</option>
 									</select>
 								</div>
 							<? }
