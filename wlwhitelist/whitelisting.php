@@ -35,8 +35,8 @@ if(isset ($_POST["eintrag"]) AND $_POST["eintrag"] == 1){
 	$db->close();
 }
 elseif(isset ($_POST["loeschen"]) AND $_POST["loeschen"] == 1){
-	$wl_id = $_POST["wl_id"];
-	$wl_st = $_POST["i_steamid"];
+	$wl_id 		= $_POST["wl_id"];
+	$i_steamid 	= $_POST["wl_steam"];
 	
 	//	FUNKTIONSFÄHIGES STATEMENT!
 	/*$db = new mysqli($mysqlhost, $mysqluser, $mysqlpass, $mysqldb);
@@ -52,7 +52,7 @@ elseif(isset ($_POST["loeschen"]) AND $_POST["loeschen"] == 1){
 		print $db->error;
 	$db->close();*/
 
-	$altislife->loeschen($tabelle, "id='".$wl_id."'");
+	$altislife->loeschen($tabelle, "i_steamid='".$i_steamid."'");
 }
 //
 ?>
@@ -117,6 +117,29 @@ elseif(isset ($_POST["loeschen"]) AND $_POST["loeschen"] == 1){
 				<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">					
 					<h1 class="page-header">Player Whitelist</h1>
 					<div class="col-md-12">
+
+						<div class="table-responsive">
+							<table class="table">
+								<tbody>
+									<tr>
+										<th><strong>ID:</strong></th>
+										<th><strong>SteamID:</strong></th>
+										<th><strong>Alias:</strong></th>
+										<th><strong></strong></th>
+									</tr>
+									<form  id="formVehicles" name="formVehicles" method="post" action="">
+										<input type="hidden" name="eintrag" id="eintrag" value="1">
+										<tr>
+											<td><input type="text" name="id"   			value="<?print $wl_player->id+1;?>"></td>
+											<td><input type="text" name="i_steamid"		placeholder="Steam ID"></td>
+											<td><input type="text" name="s_character"	placeholder="Spielername"></td>
+											<td><button type="submit" class="btn btn-success">Spieler Eintragen</button></td>
+										</tr>
+									</form>
+								</tbody>
+							</table>
+						</div>
+						
 						<div class="table-responsive">
 							<table class="table">
 								<tbody>
@@ -147,35 +170,14 @@ elseif(isset ($_POST["loeschen"]) AND $_POST["loeschen"] == 1){
 										</form>
 								</tbody>
 							</table>
-					</div>
-					<div class="table-responsive">
-						<table class="table">
-							<tbody>
-								<tr>
-									<th><strong>ID:</strong></th>
-									<th><strong>SteamID:</strong></th>
-									<th><strong>Alias:</strong></th>
-									<th><strong></strong></th>
-								</tr>
-								<form  id="formVehicles" name="formVehicles" method="post" action="">
-									<input type="hidden" name="eintrag" id="eintrag" value="1">
-									<tr>
-										<td><input type="text" name="id"   			value="<?print $wl_player->id+1;?>"></td>
-										<td><input type="text" name="i_steamid"		placeholder="Steam ID"></td>
-										<td><input type="text" name="s_character"	placeholder="Spielername"></td>
-										<td><button type="submit" class="btn btn-success">Spieler Eintragen</button></td>
-									</tr>
-								</form>
-							</tbody>
-						</table>
-					</div>
+						</div>
 
-					<div class="col-footer">
-						<h5 class="footer">
-						<footer><cite title="Footer Copyright"><?print $copy;?></cite></footer>
-						</h5>
+						<div class="col-footer">
+							<h5 class="footer">
+							<footer><cite title="Footer Copyright"><?print $copy;?></cite></footer>
+							</h5>
+						</div>
 					</div>
-				</div>
 			</div>
 		</div>
 
